@@ -4,113 +4,48 @@ FlyByWire is an agent skill that turns a set of meta-prompt workflow templates i
 
 The agent acts as a **Workflow Router**: it loads the shared core protocols, classifies your request into one of 11 task classes, loads exactly one specialized workflow template, and begins its first phase. Work stays consistent, auditable, and minimal in scope.
 
-## Installation
+## Repository Layout
 
-The whole repository *is* the skill — install by cloning (or copying) this directory into a skills scan location under the name `flybywire`.
+This repository is the FlyByWire **project** — the skill itself lives in a versioned folder, not at the root.
 
-### Kimi Code CLI
-
-```powershell
-# User level (available in every project)
-git clone <repo-url> "$env:USERPROFILE\.kimi-code\skills\flybywire"
-
-# or the tool-shared location (also scanned by other agents)
-git clone <repo-url> "$env:USERPROFILE\.agents\skills\flybywire"
-
-# Project level (only this repo)
-git clone <repo-url> .agents\skills\flybywire
+```
+FlyByWire/
+├── versions/
+│   ├── v2/            ← current canonical skill (point agents here)
+│   │   ├── SKILL.md       skill entry point
+│   │   ├── Router.md      classification taxonomy
+│   │   ├── CORE_PROTOCOLS.md + workflow templates
+│   │   ├── reference/     planning guides and artifact skeletons
+│   │   └── README.md      skill documentation (usage, template index)
+│   └── v1/            ← archived snapshot
+├── notes/             ← project working documents (plans, design notes)
+└── eval/              ← evaluation harnesses and test results
 ```
 
-Invoke manually with `/skill:flybywire`, or let the model auto-invoke it from the skill description.
+## Using the Skill
 
-### Claude Code
+Point your agent at the current version's entry file:
+
+> "Read `C:\Users\Matt\source\repos\FlyByWire\versions\v2\SKILL.md` and follow its loading sequence for this task: ..."
+
+To install it as a proper skill, copy (or symlink) `versions\v2` into a skills scan location under the name `flybywire`:
 
 ```powershell
-# Personal (all projects)
-git clone <repo-url> "$env:USERPROFILE\.claude\skills\flybywire"
+# Kimi Code CLI — user level (available in every project)
+Copy-Item -Recurse versions\v2 "$env:USERPROFILE\.kimi-code\skills\flybywire"
 
-# Project level
-git clone <repo-url> .claude\skills\flybywire
+# Claude Code — personal (all projects)
+Copy-Item -Recurse versions\v2 "$env:USERPROFILE\.claude\skills\flybywire"
 ```
 
-### No installation (manual)
+Full usage documentation, the template index, and the shared-rules description live in [`versions/v2/README.md`](.\versions\v2\README.md).
 
-Point your agent at the entry file directly:
+## Versioning Policy
 
-> "Read `SKILL.md` in this directory and follow its loading sequence for this task: ..."
+- The **highest-numbered folder** under `versions\` is the live, canonical skill. Changes to workflows are made there in place.
+- When a set of changes is substantial enough to matter to consumers already pointing at the current version, snapshot the folder as the next version (`v3`, etc.) and leave the previous one untouched as an archive.
+- External projects should point at a specific version folder so upgrades are explicit.
 
-## Usage
+## Project Notes
 
-Once loaded, the skill follows a strict sequence:
-
-1. Reads `CORE_PROTOCOLS.md` (shared rules: artifact taxonomy, session naming, shell constraints, principles).
-2. Reads `Router.md` and classifies your request.
-3. Prints a **Routing Decision**, then loads the single selected template and begins its first phase.
-
-Example prompts:
-
-- "Fix the database connection timeout in the sync worker" → routes to `BugfixPlanning.md`
-- "I want to add user authentication with OAuth" → routes to `BugfixPlanning.md` (feature mode)
-- "Execute the migration plan in `notes\plans\migration.md`" → routes to `PlanImplementation.md`
-
-## Template Index
-
-| Template | Purpose |
-|---|---|
-| [`SKILL.md`](.\SKILL.md) | Skill entry point: progressive loading sequence and routing rules. |
-| [`Router.md`](.\Router.md) | Classification taxonomy and routing procedure (loaded by SKILL.md). |
-| [`BugfixPlanning.md`](.\BugfixPlanning.md) | Unified Architectural Change Workflow for bugfixes and features. |
-| [`FeaturePlanning.md`](.\FeaturePlanning.md) | Thin wrapper that delegates feature requests to `BugfixPlanning.md` in feature mode. |
-| [`Exploration.md`](.\Exploration.md) | Research and technology-choice investigations with external precedent analysis. |
-| [`Refactoring.md`](.\Refactoring.md) | Structural decomposition and high-risk refactoring with API preservation. |
-| [`Housekeeping.md`](.\Housekeeping.md) | Behavior-preserving cleanup: comments, strings, magic numbers, logging. |
-| [`PlanImplementation.md`](.\PlanImplementation.md) | Execute a pre-written plan in small, sequential, verified chunks. |
-| [`DesignSpecRefinement.md`](.\DesignSpecRefinement.md) | Refine a high-level idea or vision into a complete, implementation-ready design specification. |
-| [`ProjectBootstrap.md`](.\ProjectBootstrap.md) | Create a new codebase or major greenfield subsystem from a design spec. |
-| [`ChangelogInvestigator.md`](.\ChangelogInvestigator.md) | Generate a human-readable changelog from a commit range. |
-| [`UXClarity.md`](.\UXClarity.md) | Validate settings/UX labels against actual behavior using blind comprehension tests. |
-| [`ArtifactSecretary.md`](.\ArtifactSecretary.md) | Reorganize accumulated workflow artifacts and recommend hygiene improvements. |
-
-## Shared Rules
-
-All templates reference [`.\CORE_PROTOCOLS.md`](.\CORE_PROTOCOLS.md) for cross-cutting concerns:
-
-- Artifact taxonomy and placement (`notes\active\`, `notes\knowledge\`, `notes\plans\`, `notes\indices\`)
-- Session folder naming conventions
-- Shell constraints and the per-project environment cache (`notes\knowledge\ENVIRONMENT.md`): onboarding probes the shell once, caches it, and later sessions verify with a single probe instead of re-detecting
-- Sub-agent onboarding (cache-first)
-- Sub-agent model selection (host-conditional primary/secondary split; inert on hosts without a secondary-model profile)
-- Shared principles: minimal change, similar-bugs sweep, facade pattern, and risk classifications
-- Checkpoint protocol (§8)
-
-Do not duplicate these rules inside individual templates; link to `CORE_PROTOCOLS.md` instead.
-
-## Planning Reference
-
-The `.\reference\` directory contains the canonical planning guides that underpin the templates above:
-
-- `00-agent-instructions.md` — standalone planning-agent entry point for the guide set.
-- `01-core-principles.md` — software engineering principles.
-- `02-architecture-patterns.md` — pattern catalog with "Use When" guards.
-- `03-project-structure.md` — layered architecture and folder conventions.
-- `04-planning-workflow.md` — 8-step planning procedure.
-- `05-output-format.md` — implementation plan deliverable template.
-- `06-implementer-prompt-skeleton.md` — shared scaffolding (onboarding, mandatory disagreement, raw-results discipline) for implementer sub-agent delegation prompts; loaded only when composing one.
-- `07-frozen-gates.md` — frozen-gates protocol and verdict taxonomy; loaded only by gated workflows.
-- `templates\` — artifact skeletons (GATES, DESIGN_SPEC, REFACTOR_MAP, ENVIRONMENT, etc.) copied verbatim when a workflow creates that artifact.
-
-These are not routed templates; they are referenced by `CORE_PROTOCOLS.md`, `BugfixPlanning.md`, `DesignSpecRefinement.md`, and `ProjectBootstrap.md`, and are loaded only when a workflow directs the agent to them.
-
-## Updating
-
-The workflow templates are based on verbatim copies of the source library, with these intentional adaptations:
-
-- `SKILL.md` added as the skill entry point.
-- `..\SCRATCH\` references repointed to `.\reference\`.
-- Shell handling made shell-agnostic (`CORE_PROTOCOLS.md` §3–4 and all sub-agent prompt templates): detect the active shell during onboarding instead of assuming PowerShell.
-- Feature-mode entry aligned: `Router.md` now matches `BugfixPlanning.md`'s rule that features run an abbreviated Phase 0 (scope/risk check) before Phase 1.
-- `BugfixPlanning.md` retitled to match its filename.
-- `CORE_PROTOCOLS.md` §7 (sub-agent model selection) added for hosts with a two-tier sub-agent model profile (Kimi CLI's `[secondary_model]` + Agent-tool `model` parameter): verifiable-output delegations omit the model parameter (secondary default); judgment-output delegations specify `primary`. Host-conditional and inert on hosts without a secondary-model profile.
-- v2 efficiency rework (2026-07-31): environment onboarding is cache-first via `notes\knowledge\ENVIRONMENT.md` (`CORE_PROTOCOLS.md` §4, three-tier invalidation); implementer sub-agent scaffolding extracted to `reference\06-implementer-prompt-skeleton.md`; frozen-gates protocol and verdict taxonomy extracted to `reference\07-frozen-gates.md`; artifact skeletons externalized to `reference\templates\`; `CORE_PROTOCOLS.md` §5.5/§5.7/§3 compressed and §8 checkpoint protocol centralized; artifact-taxonomy restatements in workflows replaced with pointers.
-
-To sync upstream changes, copy the updated files over and re-apply (or merge around) these adaptations.
+`notes\` holds project-level working documents that are not part of the shipped skill — e.g. [`notes/EFFICIENCY_V2_PLAN.md`](.\notes\EFFICIENCY_V2_PLAN.md), the design record for the v2 efficiency rework.

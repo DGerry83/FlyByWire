@@ -6,19 +6,19 @@ The agent acts as a **Workflow Router**: it loads the shared core protocols, cla
 
 ## Installation
 
-The whole repository *is* the skill — install by cloning (or copying) this directory into a skills scan location under the name `flybywire`.
+This directory *is* the skill — install by copying it into a skills scan location under the name `flybywire`. (In the FlyByWire repo it lives at `versions\v2`; see the repo-root README for the project layout and versioning policy.)
 
 ### Kimi Code CLI
 
 ```powershell
 # User level (available in every project)
-git clone <repo-url> "$env:USERPROFILE\.kimi-code\skills\flybywire"
+Copy-Item -Recurse <path-to>\versions\v2 "$env:USERPROFILE\.kimi-code\skills\flybywire"
 
 # or the tool-shared location (also scanned by other agents)
-git clone <repo-url> "$env:USERPROFILE\.agents\skills\flybywire"
+Copy-Item -Recurse <path-to>\versions\v2 "$env:USERPROFILE\.agents\skills\flybywire"
 
 # Project level (only this repo)
-git clone <repo-url> .agents\skills\flybywire
+Copy-Item -Recurse <path-to>\versions\v2 .agents\skills\flybywire
 ```
 
 Invoke manually with `/skill:flybywire`, or let the model auto-invoke it from the skill description.
@@ -27,10 +27,10 @@ Invoke manually with `/skill:flybywire`, or let the model auto-invoke it from th
 
 ```powershell
 # Personal (all projects)
-git clone <repo-url> "$env:USERPROFILE\.claude\skills\flybywire"
+Copy-Item -Recurse <path-to>\versions\v2 "$env:USERPROFILE\.claude\skills\flybywire"
 
 # Project level
-git clone <repo-url> .claude\skills\flybywire
+Copy-Item -Recurse <path-to>\versions\v2 .claude\skills\flybywire
 ```
 
 ### No installation (manual)
