@@ -11,12 +11,13 @@ This repository is the FlyByWire **project** — the skill itself lives in a ver
 ```
 FlyByWire/
 ├── versions/
-│   ├── v2/            ← current canonical skill (point agents here)
+│   ├── v3/            ← current canonical skill (point agents here)
 │   │   ├── SKILL.md       skill entry point
 │   │   ├── Router.md      classification taxonomy
 │   │   ├── CORE_PROTOCOLS.md + workflow templates
 │   │   ├── reference/     planning guides and artifact skeletons
 │   │   └── README.md      skill documentation (usage, template index)
+│   ├── v2/            ← archived snapshot
 │   └── v1/            ← archived snapshot
 ├── notes/             ← project working documents (plans, design notes)
 └── eval/              ← evaluation harnesses and test results
@@ -26,19 +27,19 @@ FlyByWire/
 
 Point your agent at the current version's entry file:
 
-> "Read `C:\Users\Matt\source\repos\FlyByWire\versions\v2\SKILL.md` and follow its loading sequence for this task: ..."
+> "Read `C:\Users\Matt\source\repos\FlyByWire\versions\v3\SKILL.md` and follow its loading sequence for this task: ..."
 
-To install it as a proper skill, copy (or symlink) `versions\v2` into a skills scan location under the name `flybywire`:
+To install it as a proper skill, copy (or symlink) `versions\v3` into a skills scan location under the name `flybywire`:
 
 ```powershell
 # Kimi Code CLI — user level (available in every project)
-Copy-Item -Recurse versions\v2 "$env:USERPROFILE\.kimi-code\skills\flybywire"
+Copy-Item -Recurse versions\v3 "$env:USERPROFILE\.kimi-code\skills\flybywire"
 
 # Claude Code — personal (all projects)
-Copy-Item -Recurse versions\v2 "$env:USERPROFILE\.claude\skills\flybywire"
+Copy-Item -Recurse versions\v3 "$env:USERPROFILE\.claude\skills\flybywire"
 ```
 
-Full usage documentation, the template index, and the shared-rules description live in [`versions/v2/README.md`](.\versions\v2\README.md).
+Full usage documentation, the template index, and the shared-rules description live in [`versions/v3/README.md`](.\versions\v3\README.md).
 
 ## Versioning Policy
 
@@ -48,4 +49,4 @@ Full usage documentation, the template index, and the shared-rules description l
 
 ## Project Notes
 
-`notes\` holds project-level working documents that are not part of the shipped skill — e.g. [`notes/EFFICIENCY_V2_PLAN.md`](.\notes\EFFICIENCY_V2_PLAN.md), the design record for the v2 efficiency rework.
+`notes\` holds project-level working documents that are not part of the shipped skill — e.g. [`notes/EFFICIENCY_V2_PLAN.md`](.\notes\EFFICIENCY_V2_PLAN.md), the design record for the v2 efficiency rework, and [`notes/V3_PLAN.md`](.\notes\V3_PLAN.md), the plan and rationale for the v3 native-interop & hot-path checklist.
