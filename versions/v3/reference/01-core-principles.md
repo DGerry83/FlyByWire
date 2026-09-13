@@ -51,7 +51,7 @@ Enforce these as hard constraints on every component in the implementation plan.
 ## 9. KISS / YAGNI
 - **KISS**: The simplest solution that satisfies requirements is the correct solution.
 - **YAGNI**: Do not build abstraction layers, configuration systems, or extensibility hooks "just in case."
-- **Application**: For small tools and mods, a plain function call is better than an event system if there is only one caller. A plain data class is better than a factory if there is only one variant. Refactor when a second use case actually appears, not before.
+- **Application**: For small tools and plugins, a plain function call is better than an event system if there is only one caller. A plain data class is better than a factory if there is only one variant. Refactor when a second use case actually appears, not before.
 
 ## 10. Explicit Over Implicit
 - **Rule**: Code clearly states what it does. No hidden mechanisms, magic values, global mutable state, or side effects.

@@ -13,22 +13,22 @@ Sub-agents may be used **in parallel for independent chunks** and must be used *
 These invariants are non-negotiable for this codebase. Fill in project-specific constraints before starting work:
 
 1. **[Invariant 1]**: [e.g., "Public script property interfaces stable — additive changes only."]
-2. **[Invariant 2]**: [e.g., "Plugin record shape stability — never rename or remove existing records without updating all references."]
+2. **[Invariant 2]**: [e.g., "Database schema stability — never rename or remove existing columns without updating all references."]
 3. **[Invariant 3]**: [e.g., "Language/runtime compatibility — do not use language features beyond the target runtime."]
 4. **[Invariant 4]**: [e.g., "Asset format constraints — preserve existing asset formats and naming conventions."]
 5. **[Invariant 5]**: [e.g., "No network / external I/O beyond engine APIs."]
 
 ## Artifact Taxonomy for This Workflow
 
-Follow [`CORE_PROTOCOLS.md`](CORE_PROTOCOLS.md) §1. This workflow's session artifacts (PLAN_DIGEST, CHUNK_MAP, INTEGRATION_CONTRACT, CHUNK_*_CONTRACT, GATES, PROGRESS_LOG, INTEGRATION_REPORT, FINAL_AUDIT) go in `notes\active\YYYY-MM-DD_[PlanName]_[ChunkDescription]\`. Never place loose `.md` files directly in `notes\` root.
+Follow [`CORE_PROTOCOLS.md`](CORE_PROTOCOLS.md) §1. This workflow's session artifacts (PLAN_DIGEST, CHUNK_MAP, INTEGRATION_CONTRACT, CHUNK_*_CONTRACT, GATES, PROGRESS_LOG, INTEGRATION_REPORT, FINAL_AUDIT) go in `.flybywire\active\YYYY-MM-DD_[PlanName]_[ChunkDescription]\`. Never place loose `.md` files directly in `.flybywire\` root.
 
 ## Frozen Gates and Verdict Taxonomy
 
-Before implementation begins (i.e., before dispatching any Phase 3 chunk agents), write the acceptance criteria for this plan implementation to `notes\active\[SessionFolder]\GATES.md`. Each gate must be independently verifiable and tied to a specific artifact, build command, or integration test.
+Before implementation begins (i.e., before dispatching any Phase 3 chunk agents), write the acceptance criteria for this plan implementation to `.flybywire\active\[SessionFolder]\GATES.md`. Each gate must be independently verifiable and tied to a specific artifact, build command, or integration test.
 
-Create GATES.md by copying `reference\templates\GATES.md` and filling its placeholders.
+Create GATES.md by copying `reference/templates/GATES.md` and filling its placeholders.
 
-Then apply the freeze protocol and verdict taxonomy in [`reference\07-frozen-gates.md`](reference\07-frozen-gates.md) exactly as written. Freeze point: user approval to enter Phase 3.
+Then apply the freeze protocol and verdict taxonomy in [`reference/07-frozen-gates.md`](reference/07-frozen-gates.md) exactly as written. Freeze point: user approval to enter Phase 3.
 
 ---
 
@@ -43,16 +43,16 @@ Then apply the freeze protocol and verdict taxonomy in [`reference\07-frozen-gat
    - Numbered sections / phases
    - Files/scripts/records touched
    - New records or assets required
-   - External dependencies (mods, libraries, stubs)
+   - External dependencies (libraries, services, stubs)
    - Testing checklist items
 4. **Identify prerequisites**:
    - Are all source files present?
    - Are all build tools available?
    - Are external dependency sources/stubs available?
-   - Is the plugin file accessible if records need editing?
+   - Is the schema file accessible if records need editing?
 5. **Create PLAN_DIGEST.md** in the session folder:
 
-   Create PLAN_DIGEST.md by copying `reference\templates\PLAN_DIGEST.md` and filling its placeholders.
+   Create PLAN_DIGEST.md by copying `reference/templates/PLAN_DIGEST.md` and filling its placeholders.
 
 6. **STOP AND REPORT**: Summarize the digest, list risk flags, and ask any open questions. State: "Phase 0 complete. Plan ingested. Waiting for approval to proceed to Phase 1."
 
@@ -65,7 +65,7 @@ Then apply the freeze protocol and verdict taxonomy in [`reference\07-frozen-gat
 ### Decomposition Rules
 
 A good chunk:
-- **Owns a narrow surface area**: one to three related files, or one plugin record family.
+- **Owns a narrow surface area**: one to three related files, or one cohesive module.
 - **Has explicit inputs and outputs**: what must already exist, what it creates or changes, what downstream chunks consume.
 - **Minimizes cross-chunk edits**: if two chunks must edit the same file, define an interface so each edits a different region or different properties/functions.
 - **Is independently verifiable**: you can compile, run a focused test, or inspect the result without needing the whole integration finished.
@@ -75,10 +75,10 @@ A good chunk:
 
 | Type | Use When | Example |
 |------|----------|---------|
-| **Foundation** | Other chunks need the artifacts it creates | Create helper quest, globals, library wrappers |
-| **Vertical slice** | Implements one complete feature end-to-end | Bomb collar redesign with script + globals + MCM |
-| **Consumer** | Uses artifacts created by foundation chunks | Replace `is_naked()` calls in existing scripts |
-| **Cleanup** | Removes obsolete code after consumers are updated | Drop AWKCR keywords from formlist |
+| **Foundation** | Other chunks need the artifacts it creates | Create helper service, shared constants, library wrappers |
+| **Vertical slice** | Implements one complete feature end-to-end | Rate limiter redesign with service + config + settings UI |
+| **Consumer** | Uses artifacts created by foundation chunks | Replace `legacy_parse()` calls in existing modules |
+| **Cleanup** | Removes obsolete code after consumers are updated | Drop deprecated entries from the lookup table |
 | **Integration** | Connects multiple chunks and removes scaffolding | Final build, cross-chunk wiring |
 
 ### Process
@@ -89,11 +89,11 @@ A good chunk:
    - Hard dependency: Chunk B cannot compile or run without Chunk A.
    - Soft dependency: Chunk B can use a stub/placeholder until Chunk A is ready.
    - No dependency: chunks are orthogonal and may be executed in parallel.
-4. **Design chunk interfaces** (functions, properties, globals, record IDs) before writing code.
+4. **Design chunk interfaces** (functions, properties, shared constants, schema IDs) before writing code.
 5. **Map each chunk to a milestone**. A chunk should advance exactly one milestone. Do not schedule a chunk for milestone *N* before all chunks for milestone *N-1* are verified.
 6. **Create CHUNK_MAP.md**:
 
-   Create CHUNK_MAP.md by copying `reference\templates\CHUNK_MAP.md` and filling its placeholders.
+   Create CHUNK_MAP.md by copying `reference/templates/CHUNK_MAP.md` and filling its placeholders.
 
 7. **STOP AND REPORT**: Present the chunk map, milestone mapping, dependency graph, and interface contracts. Ask: "Does this decomposition look correct? Any chunks you want merged or split?" State: "Phase 1 complete. Chunk map ready. Waiting for approval to proceed to Phase 2."
 
@@ -114,7 +114,7 @@ A good chunk:
    - Document the stub so it is removed in Phase 4.
 3. **Create INTEGRATION_CONTRACT.md**:
 
-   Create INTEGRATION_CONTRACT.md by copying `reference\templates\INTEGRATION_CONTRACT.md` and filling its placeholders.
+   Create INTEGRATION_CONTRACT.md by copying `reference/templates/INTEGRATION_CONTRACT.md` and filling its placeholders.
 
 4. **STOP AND REPORT**: Confirm execution order and contracts. State: "Phase 2 complete. Integration contract ready. Waiting for approval to proceed to Phase 3."
 
@@ -130,7 +130,7 @@ For each chunk or parallel group in the execution order:
 
 1. **Create CHUNK_[N]_CONTRACT.md** in the session folder:
 
-   Create CHUNK_[N]_CONTRACT.md by copying `reference\templates\CHUNK_N_CONTRACT.md` and filling its placeholders.
+   Create CHUNK_[N]_CONTRACT.md by copying `reference/templates/CHUNK_N_CONTRACT.md` and filling its placeholders.
 
 2. **Delegate to sub-agent(s)** using the prompt template below. Independent chunks may be delegated in parallel; dependent chunks must run sequentially.
 3. **Wait for all sub-agents in the current group to complete and report back** with:
@@ -149,10 +149,10 @@ For each chunk or parallel group in the execution order:
 You are a Chunk Implementation Agent working on: [CHUNK_NAME] (Chunk C[N]) of [PLAN_NAME].
 You are operating on this machine; do not assume a specific shell — the environment cache in onboarding names it.
 
-[Copy Block B (mandatory disagreement) from `reference\06-implementer-prompt-skeleton.md` into this prompt verbatim.
+[Copy Block B (mandatory disagreement) from `reference/06-implementer-prompt-skeleton.md` into this prompt verbatim.
  Fills: [CONTRACT_DOCS] = CHUNK_[N]_CONTRACT.md, CHUNK_MAP.md, and INTEGRATION_CONTRACT.md.]
 
-[Copy Block A (onboarding) from `reference\06-implementer-prompt-skeleton.md` into this prompt verbatim.
+[Copy Block A (onboarding) from `reference/06-implementer-prompt-skeleton.md` into this prompt verbatim.
  Fills: [SCOPE_CONTRACT] = CHUNK_[N]_CONTRACT.md; [EXTRA_CONTEXT_DOCS] = "Read INTEGRATION_CONTRACT.md for inter-chunk contracts", "Read GATES.md for frozen acceptance criteria", "If this chunk consumes prior chunks, read their CHUNK_*_CONTRACT.md summaries"; [EXTRA_ENVIRONMENT_CHECKS] = none; [ACKNOWLEDGMENT] = the standard form with [SCOPE] = Chunk C[N].]
 
 SCOPE BOUNDARY:
@@ -167,7 +167,7 @@ CRITICAL CONSTRAINTS:
 - Do not remove scaffolding that belongs to another chunk.
 - Use syntax native to the shell confirmed in onboarding (`;` chaining in PowerShell, `&&` in bash).
 
-[Copy Block C1 (raw-results discipline, verification status) from `reference\06-implementer-prompt-skeleton.md` into this prompt verbatim.]
+[Copy Block C1 (raw-results discipline, verification status) from `reference/06-implementer-prompt-skeleton.md` into this prompt verbatim.]
 
 IMPLEMENTATION STEPS:
 1. Create a git checkpoint / backup of files you will modify.
@@ -177,7 +177,7 @@ IMPLEMENTATION STEPS:
 5. Document before/after behavior if applicable.
 
 VERIFICATION REQUIRED BEFORE FINISHING:
-- [List specific checks, e.g., "Compile F4B_container.psc with 0 errors"]
+- [List specific checks, e.g., "Build src/sync/container.ts with 0 errors"]
 - ["Verify legacy fallback path still exists"]
 - ["Check that no other chunk's interface was broken"]
 
@@ -203,7 +203,7 @@ If a sub-agent creates `IMPEDIMENTS.md`:
 
 ### PROGRESS_LOG.md Structure
 
-Create PROGRESS_LOG.md by copying `reference\templates\PROGRESS_LOG.md` and filling its placeholders.
+Create PROGRESS_LOG.md by copying `reference/templates/PROGRESS_LOG.md` and filling its placeholders.
 
 ### When to Pause for User Approval
 
@@ -234,7 +234,7 @@ For low-risk, mechanical chunks, you may batch a short sequence with user approv
 5. **Run integration-level tests** from the plan's testing checklist (or a representative subset if the full checklist is too large).
 6. **Create INTEGRATION_REPORT.md**:
 
-   Create INTEGRATION_REPORT.md by copying `reference\templates\INTEGRATION_REPORT.md` and filling its placeholders.
+   Create INTEGRATION_REPORT.md by copying `reference/templates/INTEGRATION_REPORT.md` and filling its placeholders.
 
 7. **STOP AND REPORT**: Present integration results. State: "Phase 4 complete. Integration wired and tested. Waiting for approval to proceed to Phase 5."
 
@@ -249,15 +249,15 @@ For low-risk, mechanical chunks, you may batch a short sequence with user approv
 1. **Generate a full diff** of all changes against the pre-plan baseline.
 2. **Create FINAL_AUDIT.md**:
 
-   Create FINAL_AUDIT.md by copying `reference\templates\FINAL_AUDIT.md` and filling its placeholders.
+   Create FINAL_AUDIT.md by copying `reference/templates/FINAL_AUDIT.md` and filling its placeholders.
 
 3. **STOP AND REPORT**: Present final audit, gate verdicts, and session verdict. State: "Phase 5 complete. Plan implementation audited."
 
 ### Session Closure Checklist
-- [ ] All artifacts are inside the correct `[notes\active\[SessionFolder]\]`
-- [ ] If the plan revealed reusable patterns, extract summaries to `[notes\knowledge\]`
-- [ ] Update `[notes\indices\master_index.md]` with plan status
-- [ ] If folders in `active\` are older than 7 days, move to `[notes\finished\]`
+- [ ] All artifacts are inside the correct `[.flybywire\active\[SessionFolder]\]`
+- [ ] If the plan revealed reusable patterns, extract summaries to `[.flybywire\knowledge\]`
+- [ ] Update `[.flybywire\indices\master_index.md]` with plan status
+- [ ] If folders in `active\` are older than 7 days, move to `[.flybywire\finished\]`
 
 ---
 
@@ -282,17 +282,17 @@ If a chunk is still too large for one context window:
 2. Update CHUNK_MAP.md.
 3. Treat each sub-chunk as a separate implementation; independent sub-chunks may run in parallel.
 
-### Binary Assets / Plugin Records
-When the plan requires editing a plugin (`.esp`) or binary assets:
-- Prefer record edits via FO4Edit or the Creation Kit.
-- Never hand-edit the plugin binary directly.
-- Document new form IDs in the chunk contract.
-- Compile/deploy `.pex`/binary artifacts to both `Scripts/` and the mod package directory.
+### Binary Assets
+When the plan requires editing a data schema or binary assets:
+- Prefer schema edits via the project's schema migration tooling.
+- Never hand-edit the binary data file directly.
+- Document new schema identifiers in the chunk contract.
+- Deploy compiled/binary artifacts to both the build output and the package directory.
 
-### Save-Game Compatibility
-If the plan adds new properties/globals:
+### Saved-State Compatibility
+If the plan adds new properties or shared state:
 - Bump version identifiers where applicable.
-- Initialize new defaults in load-game handlers.
+- Initialize new defaults on state load.
 - Document compatibility implications in the chunk contract.
 
 ---

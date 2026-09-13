@@ -22,7 +22,7 @@
 - [ ] UI strings centralized (all approved strings moved to central file with clear names)
 - [ ] Patterns consolidated (repeated sequences replaced with helpers)
 - [ ] Magic numbers named (approved literals have self-documenting names)
-- [ ] No "naked" strings remain in approved scope
+- [ ] No hardcoded strings remain in approved scope
 - [ ] No unconsolidated patterns remain in approved scope
 
 ### Maintenance Improvement Check
@@ -35,7 +35,7 @@
 
 | Item | File/Method | Current State | Proposed Change | Priority |
 |------|-------------|---------------|-----------------|----------|
-| 1 | [UI.psc] | 400 lines mixed concerns | Split into screen scripts | Medium |
+| 1 | [MenuScreen.ts] | 400 lines mixed concerns | Split into screen modules | Medium |
 
 **Recommendation**: Review above items. If approved, initiate Feature Implementation Workflow with these as requirements.
 

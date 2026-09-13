@@ -12,13 +12,13 @@
 #### New Files
 | File | Responsibility | Exports? | Depends On |
 |------|---------------|----------|------------|
-| [MenuModule.psc] | [Menu rendering] | Yes | [Original facade, store] |
-| [BoardHUD.psc] | [Board + HUD] | Yes | [Original facade, store] |
-| [Original.psc] | [Facade/thin re-exports] | Yes (unchanged) | [New modules] |
+| [src/ui/MenuModule.ts] | [Menu rendering] | Yes | [Original facade, store] |
+| [src/ui/BoardOverlay.ts] | [Board + overlay] | Yes | [Original facade, store] |
+| [src/ui/Original.ts] | [Facade/thin re-exports] | Yes (unchanged) | [New modules] |
 
 #### Import Structure
 ```
-MenuModule.psc:
+src/ui/MenuModule.ts:
   - import from [types/constants file]
   - import from [state module]
   - Implementation
@@ -28,24 +28,24 @@ MenuModule.psc:
 
 #### Internal Module API (Module Boundaries)
 ```
-// MenuModule exposes to Original:
-function ShowMenu(int option)
+// MenuModule.ts exposes to Original.ts:
+function showMenu(option: number): void
 // Additive only - no existing parameters changed
 ```
 
 #### Public API Preservation (Critical)
 | Exported Item | Location After Refactor | Verification Method |
 |---------------|------------------------|---------------------|
-| `GameUI` | Stays in Original.psc (wrapper) | Import check in Consumer.psc |
-| `Board` | Stays in Board.psc | Direct import unaffected |
+| `GameUI` | Stays in Original.ts (wrapper) | Import check in Consumer.ts |
+| `Board` | Stays in BoardOverlay.ts | Direct import unaffected |
 
 **Constraint**: No exported item interface changes. Parameter types, order, and optionality must be identical.
 
 ### State Migration
 | State Variable | Current Location | New Location | Migration Strategy |
 |----------------|------------------|--------------|--------------------|
-| `menuOpen` | Original.psc local | Lifted to store | Add to state module |
-| `selectedCell` | Original.psc local | BoardHUD.psc local | Move with module |
+| `menuOpen` | Original.ts local | Lifted to store | Add to state module |
+| `selectedCell` | Original.ts local | BoardOverlay.ts local | Move with module |
 
 ### Build System Changes
 **Build Tool Updates**:

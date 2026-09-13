@@ -17,11 +17,11 @@
 
 ### Constraints
 - [Project invariants applicable to this chunk]
-- [If the chunk touches P/Invoke, native library loading, or per-frame code: state that the `reference\08-native-interop.md` checklist applies and record its three verdicts — process-global state, hot-path allocation, resource-acquisition symmetry. Otherwise omit this bullet.]
+- [If the chunk touches P/Invoke, native library loading, or per-frame code: state that the `reference/08-native-interop.md` checklist applies and record its three verdicts — process-global state, hot-path allocation, resource-acquisition symmetry. Otherwise omit this bullet.]
 
 ### Verification
 - [How to verify the chunk independently]
-- [Compile commands, in-game tests, inspections]
+- [Compile commands, runtime tests, inspections]
 - [How this verifies the milestone it advances]
 
 ### Rollback

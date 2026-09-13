@@ -10,8 +10,8 @@
 
 ### 1.3 Target Platform & Runtime
 - Platform: [e.g., Windows 10/11, cross-platform, web]
-- Runtime: [e.g., Fallout 4 + F4SE, Node.js 20, Python 3.11]
-- Version constraints: [e.g., game version 1.10.163+, .NET 8]
+- Runtime: [e.g., Node.js 20, Python 3.11]
+- Version constraints: [e.g., .NET 8, Python 3.9+]
 
 ### 1.4 Distribution
 [Folder/archive name, install location, and required files.]
@@ -55,9 +55,9 @@
 ### 4.1 Technology Stack
 | Layer | Technology | Purpose |
 |-------|------------|---------|
-| [e.g., Core logic] | [e.g., C++ F4SE plugin] | [Why] |
-| [e.g., UI] | [e.g., PrismaUI F4 + React] | [Why] |
-| [e.g., Settings] | [e.g., MCM + INI] | [Why] |
+| [e.g., Core logic] | [e.g., C++ native library] | [Why] |
+| [e.g., UI] | [e.g., React + TypeScript] | [Why] |
+| [e.g., Settings] | [e.g., JSON config + settings UI] | [Why] |
 
 ### 4.2 Data Sources
 [What data is read, how, and how often.]
@@ -168,12 +168,12 @@
 ### 10.1 Hard Dependencies
 | Dependency | Version | Purpose |
 |------------|---------|---------|
-| [F4SE] | [0.6.23+] | [Runtime hooks] |
+| [Native runtime SDK] | [2.x+] | [Runtime hooks] |
 
 ### 10.2 Soft Dependencies
 | Dependency | Fallback Behavior |
 |------------|-------------------|
-| [iHUD] | [User disables compass manually] |
+| [External overlay] | [User hides the panel manually] |
 
 ### 10.3 Known Conflicts
 [Systems that conflict and recommended mitigations.]
@@ -190,14 +190,14 @@
 
 | ID | Criterion | Verification Method |
 |----|-----------|---------------------|
-| [AC1] | [MVP feature works in a clean environment] | [In-game / runtime test] |
+| [AC1] | [MVP feature works in a clean environment] | [Runtime test] |
 | [AC2] | [Settings save and load correctly] | [Open/close settings test] |
 
 ---
 
 ## 12. Open Questions / Assumptions
 
-- [Assumption: player can rebind the hotkey through settings]
+- [Assumption: user can rebind the hotkey through settings]
 - [Question: should blips persist through save/load?]
 
 ---

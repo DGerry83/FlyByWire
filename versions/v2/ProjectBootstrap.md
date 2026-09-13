@@ -151,7 +151,7 @@ Create the project directory structure in the user's requested project root. Fol
 - No global mutable state.
 
 ## Workflow Entry Point
-- New tasks: classify via `C:/Users/Matt/source/repos/META-PROMPTS/TEMPLATES/Router.md`.
+- New tasks: classify via the FlyByWire `Router.md` (in the installed `flybywire` skill directory).
 - Changes to existing code: [`BugfixPlanning.md`](.\BugfixPlanning.md).
 - New features without a plan: [`DesignSpecRefinement.md`](.\DesignSpecRefinement.md).
 - Execution of existing plan: [`PlanImplementation.md`](.\PlanImplementation.md).

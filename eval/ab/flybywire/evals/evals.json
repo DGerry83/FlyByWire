@@ -1,0 +1,53 @@
+{
+  "skill_name": "flybywire",
+  "evals": [
+    {
+      "id": "ab-bug-triage",
+      "name": "bug triage follows investigation-first process",
+      "prompt": "Players report that after fast-traveling, the compass markers for active quests vanish until the game is restarted. This started happening right after the 1.3 update. Take care of this.",
+      "expected_output": "The response classifies the request as a Bug, selects BugfixPlanning.md, and begins a structured investigation (documenting symptoms, generating and testing hypotheses, identifying root cause) before proposing any code change.",
+      "assertions": [
+        "The output contains a Routing Decision that classifies the request as Bug and selects BugfixPlanning.md.",
+        "The output proposes structured investigation steps (symptom documentation, hypothesis generation and testing, root cause identification) before any implementation.",
+        "The output does not present a completed code fix; it starts with diagnosis.",
+        "The output creates or references a session artifact structure (e.g., an investigation log in a dated session folder)."
+      ]
+    },
+    {
+      "id": "ab-feature-architect",
+      "name": "feature request gets contract-first treatment",
+      "prompt": "Add a quick-save system that works during combat, with a configurable number of save slots.",
+      "expected_output": "The response classifies the request as a Feature, selects BugfixPlanning.md in feature mode, begins with an abbreviated scope/risk check, and proposes an architecture contract with impact analysis and acceptance gates before any implementation.",
+      "assertions": [
+        "The output contains a Routing Decision that classifies the request as Feature and selects BugfixPlanning.md.",
+        "The output begins with a scope and risk check (abbreviated investigation), not with code.",
+        "The output makes clear that implementation does not begin until a design/architecture phase and explicit user approval have occurred.",
+        "The output pauses for user confirmation before proceeding (checkpoint behavior)."
+      ]
+    },
+    {
+      "id": "ab-plan-execution",
+      "name": "pre-written plan executed in verified chunks",
+      "prompt": "Execute this plan I already wrote, step by step:\n1. Rename the PlayerStats field 'hp' to 'health' everywhere.\n2. Update the save-game serializer to read both names for backward compatibility.\n3. Remove the deprecated 'hp' alias after one release.",
+      "expected_output": "The response classifies the request as PlanExecution, selects PlanImplementation.md, performs a plan ingestion and feasibility check, and organizes execution into small sequential verified chunks with checkpoints rather than doing everything at once.",
+      "assertions": [
+        "The output contains a Routing Decision that classifies the request as PlanExecution and selects PlanImplementation.md.",
+        "The output performs a feasibility or ingestion check on the plan before implementing anything.",
+        "The output describes decomposition of the plan into verifiable chunks or a chunk-based execution phase, even if execution begins only after later checkpoints.",
+        "The output identifies the backward-compatibility and deprecation risks inherent in the plan."
+      ]
+    },
+    {
+      "id": "ab-changelog",
+      "name": "commit range becomes human-readable changelog",
+      "prompt": "Write release notes for v1.4 from these commits since v1.3:\n- fix: compass markers disappear after fast travel\n- feat: add quick-save during combat\n- refactor: split GameUI into modules\n- fix: crash when loading pre-1.2 saves\n- chore: update build scripts\n- feat: configurable save slot count",
+      "expected_output": "The response routes to ChangelogInvestigator.md and produces a human-readable changelog that groups commits into categories, infers intent, and omits or de-emphasizes chores.",
+      "assertions": [
+        "The output routes to or follows the ChangelogInvestigator workflow.",
+        "The output groups changes into categories (e.g., features, fixes, internal changes).",
+        "The output rewrites raw commit messages into human-readable release-note language.",
+        "The output confines the build-script chore to a clearly labeled chore/internal section or omits it as trivial, per the template's noise-filtering rules."
+      ]
+    }
+  ]
+}

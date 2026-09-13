@@ -20,7 +20,7 @@
 #### Phase 1b: Magic Numbers (Risk: Low)
 | Target | Action | Verification |
 |--------|--------|------------|
-| [engine.psc literals] | Extract to named constants in constants file | Compile check |
+| [engine.ts literals] | Extract to named constants in constants file | Compile check |
 | [File.ext sizing] | Name and centralize | No public interface impact |
 
 #### Phase 1c: UI String Centralization (Risk: Low)
@@ -28,7 +28,7 @@
 
 | Source Location | String Value | Constant Name | Context |
 |-----------------|--------------|---------------|---------|
-| [UI.psc:45] | "TEST CIRCUIT" | TestCircuitLabel | Test button |
+| [src/ui/MenuScreen.ts:45] | "TEST CIRCUIT" | TestCircuitLabel | Test button |
 
 **Rationale**: Centralize for easy text editing without navigating implementation code.
 
@@ -46,7 +46,7 @@
 
 | Item | File/Method | Concern | Proposed Change | Effort | Risk |
 |------|-------------|---------|----------------|--------|------|
-| [UI.psc] | 400 lines, mixed concerns | Split into screen scripts | High | Medium |
+| [MenuScreen.ts] | 400 lines, mixed concerns | Split into screen modules | High | Medium |
 
 ### Migration/Compatibility
 - **String Constants**: Named exports from constants file - no API changes

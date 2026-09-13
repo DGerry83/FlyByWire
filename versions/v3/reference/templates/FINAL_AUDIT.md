@@ -14,8 +14,8 @@
 ### Plan Coverage Check
 | Plan Section | Implemented By | Verified | Notes |
 |--------------|----------------|----------|-------|
-| [3. Helper quest] | C1 | Yes | ... |
-| [6. Bomb collar] | C3 | Yes | ... |
+| [3. Helper service] | C1 | Yes | ... |
+| [6. Rate limiter] | C3 | Yes | ... |
 
 ### Invariant Check Results
 - [ ] Public interfaces preserved
@@ -26,14 +26,14 @@
 ### Testing Checklist Status
 | Category | Tests Passed | Tests Failed | Skipped |
 |----------|--------------|--------------|---------|
-| SAKR plumbing | [X] | [Y] | [Z] |
-| Nudity checks | ... | ... | ... |
+| Sync plumbing | [X] | [Y] | [Z] |
+| Sync state checks | ... | ... | ... |
 
 ### Deviations from Plan
 - [Any intentional deviations and rationale]
 
 ### Known Limitations / Follow-Up Work
-- [e.g., "Male character exposure behavior not fully tested"]
+- [e.g., "Offline fallback behavior not fully tested"]
 
 ### Recommendation
 [Clear to proceed / Needs fixes: list]

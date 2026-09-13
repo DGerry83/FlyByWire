@@ -1,0 +1,18 @@
+{
+  "provider": "mistral",
+  "model": "mistral-small-latest",
+  "timestamp": "20260730T181608Z",
+  "score": "1/1",
+  "results": [
+    {
+      "id": "R01",
+      "prompt": "The game crashes to desktop whenever I open the inventory after loading a pre-patch save.",
+      "expected_class": "Bug",
+      "expected_template": "BugfixPlanning.md",
+      "got_class": "Bug",
+      "got_template": "BugfixPlanning.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: Bug\n- **Selected Template**: BugfixPlanning.md\n- **Justification**: The user reports a reproducible crash triggered by a specific user action (opening the inventory) after loading a save file, indicating a regression in existing behavior. This fits the definition of a bug and requires root-cause investigation and a minimal, audited fix, which is the purpose of the BugfixPlanning workflow.\n- **Clarifying Questions**:\n  - Does this crash occur with all saves, or only pre-patch saves?\n  - Are there any error logs or crash dumps available?\n```"
+    }
+  ]
+}

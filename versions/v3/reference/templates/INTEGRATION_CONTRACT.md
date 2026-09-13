@@ -5,7 +5,7 @@
 ### Execution Order
 | Order | Chunk ID | Name | Why This Position | Parallel Group |
 |-------|----------|------|-------------------|----------------|
-| 1 | C1 | SAKR Helper & Globals | All other chunks consume it | - |
+| 1 | C1 | Sync Helper & Shared Config | All other chunks consume it | - |
 | 2 | C2 | Container Trading | Safe consumer, validates helper | A |
 | 3 | ... | ... | ... | ... |
 
@@ -14,20 +14,20 @@
 ### Stub / Scaffolding List
 | Stub | Location | Replaced By | Remove In |
 |------|----------|-------------|-----------|
-| `F4B_SAKRHelper` empty quest record | FO4_Basics.esp | Full C1 implementation | C1 |
-| Placeholder global values | FO4_Basics.esp | Live updates from helper | C1 |
+| `SyncHelper` empty stub module | inventory_schema.json | Full C1 implementation | C1 |
+| Placeholder config values | inventory_schema.json | Live updates from helper | C1 |
 
 ### Inter-Chunk Contracts (Locked)
 | Contract Element | Definition | Owner | Consumers |
 |-------------------|------------|-------|-----------|
-| `is_player_exposed()` | Returns `bool`; true if any private part uncovered | C1 (F4B_Library) | C2, C3, C5 |
-| `F4B_PlayerIsExposed` global | `1` when exposed, updated by helper event | C1 | C4 (perk conditions) |
+| `is_synced()` | Returns `bool`; true if local state matches remote | C1 (sync helper) | C2, C3, C5 |
+| `syncPending` shared constant | `true` while a sync is in flight, updated by helper event | C1 | C4 (declarative rules) |
 
 ### Build/Test Sequence
 | After Chunk | Verification |
 |-------------|--------------|
-| C1 | Helper compiles; game loads without SAKR errors |
-| C2 | Trading restrictions react to SAKR exposure |
+| C1 | Helper compiles; app starts without sync errors |
+| C2 | Trading restrictions react to sync state |
 | ... | ... |
 
 ### Rollback Plan

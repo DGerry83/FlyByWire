@@ -1,5 +1,7 @@
 # FlyByWire — Protocol-Driven Workflow Skill
 
+> **Archived snapshot (v1).** Kept for reference and as an eval baseline — see `eval/TESTING.md` at the repo root. The current skill is `versions/v3`; install that one.
+
 FlyByWire is an agent skill that turns a set of meta-prompt workflow templates into a progressive-loading skill for AI coding agents (Kimi Code CLI, Claude Code, or any Agent-Skills-compatible tool).
 
 The agent acts as a **Workflow Router**: it loads the shared core protocols, classifies your request into one of 11 task classes, loads exactly one specialized workflow template, and begins its first phase. Work stays consistent, auditable, and minimal in scope.

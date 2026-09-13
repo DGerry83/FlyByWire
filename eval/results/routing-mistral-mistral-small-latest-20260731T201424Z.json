@@ -1,0 +1,28 @@
+{
+  "provider": "mistral",
+  "model": "mistral-small-latest",
+  "timestamp": "20260731T201424Z",
+  "score": "1/2",
+  "results": [
+    {
+      "id": "A02",
+      "prompt": "I need a small bug fix: add a pause menu that can be opened from anywhere in the game.",
+      "expected_class": "Feature",
+      "expected_template": "BugfixPlanning.md",
+      "got_class": "Bug",
+      "got_template": "BugfixPlanning.md",
+      "pass": false,
+      "raw_response": "## Routing Decision\n\n- **Classification**: Bug\n- **Selected Template**: BugfixPlanning.md\n- **Justification**: The user explicitly requests a \"small bug fix\" to add a missing capability (pause menu accessibility), which aligns with the **Bug** class in the taxonomy. While the user frames it as a feature addition, the dominant intent is to correct a gap in existing behavior (no pause menu access), making this a behavioral regression or missing functionality—both of which are treated as bugs in this workflow. The `BugfixPlanning.md` template is designed to handle both true bugs and missing features when they require root-cause analysis and minimal, audited fixes.\n- **Clarifying Questions**:\n  - Is the pause menu already implemented elsewhere in the codebase, or is this a greenfield addition?\n  - Are there any constraints on how the pause menu should be triggered (e.g., keyboard shortcut, controller button)?"
+    },
+    {
+      "id": "A11",
+      "prompt": "The pathfinding module is unsalvageable — delete it and write a new one from scratch, keeping the exact same interface for callers.",
+      "expected_class": "Refactor",
+      "expected_template": "Refactoring.md",
+      "got_class": "Refactor",
+      "got_template": "Refactoring.md",
+      "pass": true,
+      "raw_response": "## Routing Decision\n\n- **Classification**: Refactor\n- **Selected Template**: Refactoring.md\n- **Justification**: The user explicitly requests a full rewrite of a module (\"delete it and write a new one\") while preserving the existing interface for callers. This is a behavior-preserving structural overhaul, which aligns with the definition of a refactor in the taxonomy. The goal is to improve internal quality without altering external behavior, making `Refactoring.md` the appropriate template.\n- **Clarifying Questions**:\n  - Are there any documented edge cases or performance requirements the new implementation must satisfy?\n  - Should the new implementation reuse any existing utility functions or patterns from the codebase?"
+    }
+  ]
+}

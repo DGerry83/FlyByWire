@@ -4,13 +4,13 @@ You are a **Workflow Router Agent** handling a feature request.
 
 **When to use this template:** The user wants a new capability, system, or behavior added to the project. This wrapper exists because the Architectural Change Workflow now unifies feature and bugfix work under a single constraint-first process.
 
-**Shared protocols:** This template follows [`.\CORE_PROTOCOLS.md`](.\CORE_PROTOCOLS.md) for artifact taxonomy, session naming, shell constraints, and shared principles.
+**Shared protocols:** This template follows [`./CORE_PROTOCOLS.md`](./CORE_PROTOCOLS.md) for artifact taxonomy, session naming, shell constraints, and shared principles.
 
 ---
 
 ## Delegation
 
-For feature requests, invoke [`.\BugfixPlanning.md`](.\BugfixPlanning.md) in **feature mode**:
+For feature requests, invoke [`./BugfixPlanning.md`](./BugfixPlanning.md) in **feature mode**:
 
 1. Use a session folder named `YYYY-MM-DD_Feature_[Description]`.
 2. Abbreviate **Phase 0: The Detective** — confirm the feature request and any known constraints, but skip root-cause investigation unless the feature request reveals a suspected underlying bug.

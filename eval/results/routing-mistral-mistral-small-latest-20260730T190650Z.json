@@ -1,0 +1,68 @@
+{
+  "provider": "mistral",
+  "model": "mistral-small-latest",
+  "timestamp": "20260730T190650Z",
+  "score": "2/6",
+  "results": [
+    {
+      "id": "A03",
+      "prompt": "Run the changelog process on the last month of commits and tell me which one introduced the stamina regen regression.",
+      "expected_class": "Bug",
+      "expected_template": "BugfixPlanning.md",
+      "got_class": "Changelog",
+      "got_template": "ChangelogInvestigator.md",
+      "pass": false,
+      "raw_response": "## Routing Decision\n\n- **Classification**: Changelog\n- **Selected Template**: ChangelogInvestigator.md\n- **Justification**: The user explicitly requests running the changelog process to identify a regression (stamina regen) introduced in the last month of commits. This directly matches the purpose of the `ChangelogInvestigator.md` workflow, which is designed to analyze commit ranges to determine which changes introduced specific issues.\n- **Clarifying Questions**:\n  - Should the changelog analysis focus on the entire repository, or are there specific modules or directories relevant to stamina regen?\n  - Do you have a preferred base commit/tag to start the analysis from, or should it begin from the start of the last month?"
+    },
+    {
+      "id": "A04",
+      "prompt": "Let's do a design spec session: every inventory tooltip label needs to be checked against what the code actually does, because players say half of them lie.",
+      "expected_class": "UXValidation",
+      "expected_template": "UXClarity.md",
+      "got_class": "DesignSpec",
+      "got_template": "DesignSpecRefinement.md",
+      "pass": false,
+      "raw_response": "## Routing Decision\n\n- **Classification**: DesignSpec\n- **Selected Template**: DesignSpecRefinement.md\n- **Justification**: The user's request centers on validating and refining a high-level idea—ensuring inventory tooltip labels accurately reflect in-game behavior—before any implementation or correction work begins. This aligns with the definition of a design specification refinement task, where a vision (accurate tooltip labels) must be distilled into a complete, actionable design before execution.\n- **Clarifying Questions**:\n  - Are there existing design documents or style guides for tooltip labels that should inform the refinement?\n  - Should the session prioritize a full audit of all tooltips or focus on a representative subset first?"
+    },
+    {
+      "id": "A05",
+      "prompt": "Refactor the quest system into separate modules. While you're in there, quests occasionally complete without their objectives being met — that needs fixing too.",
+      "expected_class": "Refactor",
+      "expected_template": "Refactoring.md",
+      "got_class": "Refactor",
+      "got_template": "Refactoring.md",
+      "pass": true,
+      "raw_response": "## Routing Decision\n\n- **Classification**: Refactor\n- **Selected Template**: Refactoring.md\n- **Justification**: The user explicitly requests a structural refactor (\"Refactor the quest system into separate modules\") and the request is dominated by the need to split, restructure, or decouple code while preserving behavior. The incidental mention of a bug (\"quests occasionally complete without their objectives being met\") is secondary and should be addressed within the refactor workflow as a behavior-preserving fix, not as a standalone bug classification.\n- **Clarifying Questions**:\n  - Are there existing tests oracles that verify quest completion logic and objective tracking?\n  - Should the bug fix be treated as a critical blocker to be addressed before or during the refactor?"
+    },
+    {
+      "id": "A09",
+      "prompt": "I don't want any code touched yet — write me a complete implementation plan for the netcode rework that I can hand off to someone else to execute later.",
+      "expected_class": "DesignSpec",
+      "expected_template": "DesignSpecRefinement.md",
+      "got_class": "PlanExecution",
+      "got_template": "PlanImplementation.md",
+      "pass": false,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: PlanExecution\n- **Selected Template**: PlanImplementation.md\n- **Justification**: The user explicitly requests a complete implementation plan for a future execution phase without touching any code. This aligns with the PlanExecution class, which is designed to produce a pre-written plan or roadmap to be executed later in chunks. The PlanImplementation.md template is the correct choice as it guides the creation of a detailed, handoff-ready plan.\n- **Clarifying Questions**:\n  - Are there any specific constraints or non-functional requirements (e.g., latency, bandwidth, compatibility) that must be addressed in the plan?\n  - Should the plan include milestones, testing phases, or rollback strategies?\n```"
+    },
+    {
+      "id": "A11",
+      "prompt": "The pathfinding module is unsalvageable — delete it and write a new one from scratch, keeping the exact same interface for callers.",
+      "expected_class": "Refactor",
+      "expected_template": "Refactoring.md",
+      "got_class": "Refactor",
+      "got_template": "Refactoring.md",
+      "pass": true,
+      "raw_response": "## Routing Decision\n\n- **Classification**: Refactor\n- **Selected Template**: Refactoring.md\n- **Justification**: The user explicitly requests a full rewrite of a module (\"delete it and write a new one\") while preserving the existing interface for callers. This is a behavior-preserving restructuring of the codebase, which aligns with the definition of a refactor. The `Refactoring.md` template is designed to handle such structural overhauls while maintaining backward compatibility.\n- **Clarifying Questions**:\n  - Are there any caller-side assumptions or undocumented behaviors in the existing interface that must be preserved?\n  - Should the new implementation follow the same architectural patterns as the rest of the codebase, or are there constraints on the rewrite?"
+    },
+    {
+      "id": "A19",
+      "prompt": "Audit the API's rate-limit headers against what the endpoints actually enforce — customers say the documented limits don't match reality.",
+      "expected_class": "UXValidation",
+      "expected_template": "UXClarity.md",
+      "got_class": "Research",
+      "got_template": "Exploration.md",
+      "pass": false,
+      "raw_response": "## Routing Decision\n\n- **Classification**: Research\n- **Selected Template**: Exploration.md\n- **Justification**: The user's request is to investigate a discrepancy between documented and actual behavior of API rate-limit enforcement. This is an exploratory task focused on validating and understanding existing system behavior rather than fixing a bug, implementing a feature, or performing cleanup. The `Exploration.md` template is designed for such investigative work where the goal is to uncover or confirm facts about the system's current state.\n- **Clarifying Questions**:\n  - Do you have access to the API endpoints in question, or should we plan to use a test account?\n  - Are there specific endpoints or rate-limit headers you want to prioritize in this audit?"
+    }
+  ]
+}

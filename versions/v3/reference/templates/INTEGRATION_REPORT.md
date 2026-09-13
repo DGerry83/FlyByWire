@@ -4,12 +4,12 @@
 ### Stubs Removed
 | Stub | Replacement | Status |
 |------|-------------|--------|
-| [Placeholder helper] | [F4B_SAKRHelper] | Removed |
+| [Placeholder helper] | [SyncHelper] | Removed |
 
 ### Cross-Chunk Wiring Verified
 | Connection | Check | Result |
 |------------|-------|--------|
-| Helper → Library → Consumers | All callers use `libs.is_player_exposed()` | Pass/Fail |
+| Helper → Library → Consumers | All callers use `libs.is_synced()` | Pass/Fail |
 
 ### Full Build Result
 - [ ] All scripts compile (0 errors)

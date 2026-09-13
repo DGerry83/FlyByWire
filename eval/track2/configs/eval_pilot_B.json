@@ -1,0 +1,15 @@
+{
+  "mode": "evaluation",
+  "workdir": "~/flybywire-track2/runs",
+  "patch_files": ["~/flybywire-track2/runs/pilot_B/patches.jsonl"],
+  "dataset_files": ["~/flybywire-track2/data/multi_swe_bench_flash.jsonl"],
+  "need_clone": false,
+  "stop_on_error": false,
+  "max_workers": 1,
+  "max_workers_build_image": 1,
+  "max_workers_run_instance": 1,
+  "repo_dir": "~/flybywire-track2/runs/repos",
+  "output_dir": "~/flybywire-track2/runs/eval_pilot_B",
+  "log_dir": "~/flybywire-track2/runs/eval_pilot_B/logs",
+  "log_level": "DEBUG"
+}

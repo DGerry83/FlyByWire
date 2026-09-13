@@ -4,7 +4,7 @@
 
 ### Current State Analysis
 - **Lines of Code**: [Count]
-- **Responsibilities Identified**: [List: menu rendering, game logic, etc.]
+- **Responsibilities Identified**: [List: menu rendering, domain logic, etc.]
 - **Exported Items**: [List of exported components/functions]
 - **Local State**: [Variables that persist across calls/updates]
 
@@ -19,8 +19,8 @@
 #### Dependents (What Needs Target)
 | Consumer | Usage | Impact of Split |
 |----------|-------|-----------------|
-| [Main.psc] | Imports [Target] | Must update import path if file moves |
-| [Other.psc] | None | N/A |
+| [Main.ts] | Imports [Target] | Must update import path if file moves |
+| [Other.ts] | None | N/A |
 
 #### Internal Call Graph (Simplified)
 ```
@@ -52,13 +52,13 @@
 
 ### Proposed Architecture (Visual)
 ```
-Original: [Main.psc] ←→ [Consumer.psc]
+Original: [Main.ts] ←→ [Consumer.ts]
 
 Proposed: 
-[Main.psc] ←→ [Consumer.psc] (thin facade, re-exports)
+[Main.ts] ←→ [Consumer.ts] (thin facade, re-exports)
    ↓
-[MenuModule.psc] (menu rendering)
-[BoardModule.psc] (board + HUD)
+[MenuModule.ts] (menu rendering)
+[BoardModule.ts] (board + overlay)
 [shared/] (common helpers)
 ```
 

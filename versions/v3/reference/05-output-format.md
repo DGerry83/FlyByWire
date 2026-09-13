@@ -109,7 +109,7 @@ Table of every architectural decision:
 |---|---|---|
 | [e.g., Game objects have mixable behaviors] | Component-Based | Entities need different behavior combinations at runtime |
 | [e.g., Menu → Gameplay → Pause modes] | State Machine | Distinct modes with different update/render logic |
-| [e.g., Save/load player progress] | Repository | Need swappable persistence for testing |
+| [e.g., Save/load user progress] | Repository | Need swappable persistence for testing |
 | [e.g., Simple config reading] | None (direct) | Single consumer, no extension needed |
 
 ---

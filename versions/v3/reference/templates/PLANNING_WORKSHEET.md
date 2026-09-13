@@ -39,7 +39,7 @@
 
 ### Step 8 — Verification Checkpoints (Sequential Milestones)
 
-Milestones are **sequential gates**. Do not start milestone *N* until milestone *N-1* has passed verification. Each milestone should be small enough to verify in isolation and should map to one or more chunk groups in [`PlanImplementation.md`](.\PlanImplementation.md).
+Milestones are **sequential gates**. Do not start milestone *N* until milestone *N-1* has passed verification. Each milestone should be small enough to verify in isolation and should map to one or more chunk groups in [`PlanImplementation.md`](./PlanImplementation.md).
 
 | # | Milestone | Components | Verification | Success Criteria | PlanImplementation Chunk Group |
 |---|---|---|---|---|---|

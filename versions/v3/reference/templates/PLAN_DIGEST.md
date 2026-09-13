@@ -10,25 +10,25 @@
 | Section | Summary | Files/Records Touched | Risk Level |
 |---------|---------|----------------------|------------|
 | [1. Goal] | [What it says] | [Files] | Low/Med/High |
-| [2. SAKR API] | [API reference] | [Helper script] | Low |
+| [2. Sync API] | [API reference] | [Helper module] | Low |
 
 ### Files Requiring Changes
 | File | Change Type | Plan Section | Depends On |
 |------|-------------|--------------|------------|
 | [Path] | [Add/Modify/Remove] | [Section] | [Prerequisite chunk] |
 
-### New Records / Assets
-| Editor ID | Type | Purpose | Defined In Plan Section |
+### New Schema / Assets
+| Key | Type | Purpose | Defined In Plan Section |
 |-----------|------|---------|------------------------|
-| [F4B_SAKRHelper] | [QUST] | [API helper quest] | [3.1] |
+| [sync_helper] | [service] | [API helper module] | [3.1] |
 
 ### External Dependencies
 | Dependency | Required? | How Verified |
 |------------|-----------|--------------|
-| [SAKR source] | [Yes/Optional] | [Import path / stub present] |
+| [sync service source] | [Yes/Optional] | [Import path / stub present] |
 
 ### Risk Flags
-- [High-risk integration point, e.g., "Bomb collar logic touches perk conditions and globals"]
+- [High-risk integration point, e.g., "Sync logic touches declarative rules and shared constants"]
 
 ### Open Questions
 - [Anything in the plan that is ambiguous or needs user clarification]

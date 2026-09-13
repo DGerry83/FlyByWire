@@ -1,0 +1,68 @@
+{
+  "provider": "gemini",
+  "model": "gemini-3.1-flash-lite",
+  "timestamp": "20260730T190608Z",
+  "score": "3/6",
+  "results": [
+    {
+      "id": "A03",
+      "prompt": "Run the changelog process on the last month of commits and tell me which one introduced the stamina regen regression.",
+      "expected_class": "Bug",
+      "expected_template": "BugfixPlanning.md",
+      "got_class": "Changelog",
+      "got_template": "ChangelogInvestigator.md",
+      "pass": false,
+      "raw_response": "## Routing Decision\n\n- **Classification**: Changelog\n- **Selected Template**: ChangelogInvestigator.md\n- **Justification**: The user is requesting a review of a commit range to identify a specific regression. While the ultimate goal is to find a bug, the primary task is the investigation of the commit history to generate a report/identification, which falls under the Changelog classification.\n- **Clarifying Questions**:\n  - Could you provide the repository path or the specific branch/tag range you would like me to analyze for the last month?\n  - Do you have a specific commit hash or date that marks the beginning of the \"last month\" period?\n\nLoading ChangelogInvestigator.md and beginning the changelog process."
+    },
+    {
+      "id": "A04",
+      "prompt": "Let's do a design spec session: every inventory tooltip label needs to be checked against what the code actually does, because players say half of them lie.",
+      "expected_class": "UXValidation",
+      "expected_template": "UXClarity.md",
+      "got_class": "UXValidation",
+      "got_template": "UXClarity.md",
+      "pass": true,
+      "raw_response": "## Routing Decision\n\n- **Classification**: UXValidation\n- **Selected Template**: UXClarity.md\n- **Justification**: The user's request is to verify that existing UI labels (inventory tooltips) accurately reflect the underlying code behavior. While the user labeled this a \"design spec session,\" the core task is validating existing UX against implementation, which falls squarely under the `UXValidation` class.\n- **Clarifying Questions**:\n  - Are there specific inventory items or categories that are the primary focus, or should I perform a comprehensive audit of all inventory tooltips?\n  - Do you have a list of the specific tooltips that players have flagged as \"lying,\" or should I start by mapping the entire inventory system?\n\nLoading UXClarity.md and beginning PHASE 1: Mechanical Reverse-Engineering."
+    },
+    {
+      "id": "A05",
+      "prompt": "Refactor the quest system into separate modules. While you're in there, quests occasionally complete without their objectives being met — that needs fixing too.",
+      "expected_class": "Refactor",
+      "expected_template": "Refactoring.md",
+      "got_class": "Bug",
+      "got_template": "BugfixPlanning.md",
+      "pass": false,
+      "raw_response": "## Routing Decision\n\n- **Classification**: Bug\n- **Selected Template**: BugfixPlanning.md\n- **Justification**: While the request includes a refactoring component, the presence of a functional defect (quests completing prematurely) takes precedence. In the FlyByWire protocol, stability and correctness are prioritized; therefore, the `BugfixPlanning.md` template is the appropriate choice to ensure the bug is isolated and resolved before or during the structural refactoring.\n- **Clarifying Questions**: \n    - Is the quest completion bug reproducible in a test environment, or does it only occur in specific production scenarios?\n    - Are there any recent changes to the quest logic that might have introduced this regression?\n\nLoading BugfixPlanning.md and beginning Phase 0: The Detective."
+    },
+    {
+      "id": "A09",
+      "prompt": "I don't want any code touched yet — write me a complete implementation plan for the netcode rework that I can hand off to someone else to execute later.",
+      "expected_class": "DesignSpec",
+      "expected_template": "DesignSpecRefinement.md",
+      "got_class": "DesignSpec",
+      "got_template": "DesignSpecRefinement.md",
+      "pass": true,
+      "raw_response": "## Routing Decision\n\n- **Classification**: DesignSpec\n- **Selected Template**: DesignSpecRefinement.md\n- **Justification**: The user explicitly requests a comprehensive implementation plan for a major architectural change (netcode rework) without performing the implementation themselves. This aligns with the DesignSpec class, which focuses on refining high-level visions into actionable specifications.\n- **Clarifying Questions**: \n  - Are there specific networking libraries or protocols (e.g., WebSockets, gRPC, custom UDP) that the rework must utilize?\n  - What are the primary performance or scalability goals driving this rework?\n\nLoading DesignSpecRefinement.md and beginning Phase 0: Onboarding & Local Research."
+    },
+    {
+      "id": "A11",
+      "prompt": "The pathfinding module is unsalvageable — delete it and write a new one from scratch, keeping the exact same interface for callers.",
+      "expected_class": "Refactor",
+      "expected_template": "Refactoring.md",
+      "got_class": "NewProject",
+      "got_template": "ProjectBootstrap.md",
+      "pass": false,
+      "raw_response": "## Routing Decision\n\n- **Classification**: NewProject\n- **Selected Template**: ProjectBootstrap.md\n- **Justification**: While the user describes this as a replacement for an existing module, the request to \"write a new one from scratch\" constitutes a greenfield development task for that specific subsystem. `ProjectBootstrap.md` is the appropriate template for defining the requirements, interface constraints, and architectural design of a new component before implementation begins.\n- **Clarifying Questions**: \n  - Are there specific performance constraints or edge cases in the current pathfinding module that the new implementation must address?\n  - Do you have the existing interface definition (header files or API documentation) ready for reference?\n\nLoading ProjectBootstrap.md and beginning Phase 0 — Design Spec Ingestion."
+    },
+    {
+      "id": "A19",
+      "prompt": "Audit the API's rate-limit headers against what the endpoints actually enforce — customers say the documented limits don't match reality.",
+      "expected_class": "UXValidation",
+      "expected_template": "UXClarity.md",
+      "got_class": "UXValidation",
+      "got_template": "UXClarity.md",
+      "pass": true,
+      "raw_response": "## Routing Decision\n\n- **Classification**: UXValidation\n- **Selected Template**: UXClarity.md\n- **Justification**: The user is reporting a discrepancy between documented expectations (the API documentation/headers) and the actual system behavior (what the endpoints enforce). This requires verifying the \"UX\" of the API contract against the underlying implementation, which falls under the scope of the `UXClarity.md` template.\n- **Clarifying Questions**:\n  - Which specific endpoints or API versions are the customers reporting as inconsistent?\n  - Do you have access to the current documentation source or the specific header values being returned?\n\nLoading UXClarity.md and beginning PHASE 1: Mechanical Reverse-Engineering."
+    }
+  ]
+}

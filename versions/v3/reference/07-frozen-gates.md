@@ -1,13 +1,13 @@
 # Frozen Gates Protocol and Verdict Taxonomy
 
-Shared protocol for `GATES.md` in every gated workflow (BugfixPlanning, PlanImplementation, Refactoring, ProjectBootstrap). Each workflow's gate *criteria* live in its own skeleton under `reference\templates\` (`GATES.md`, `GATES_REFACTOR.md`, `GATES_BOOTSTRAP.md`); this file is the authority for how gates are frozen and judged. Loaded only when a workflow points here.
+Shared protocol for `GATES.md` in every gated workflow (BugfixPlanning, PlanImplementation, Refactoring, ProjectBootstrap). Each workflow's gate *criteria* live in its own skeleton under `reference/templates/` (`GATES.md`, `GATES_REFACTOR.md`, `GATES_BOOTSTRAP.md`); this file is the authority for how gates are frozen and judged. Loaded only when a workflow points here.
 
 ## The Protocol
 
 Before any implementation work begins (before dispatching implementer sub-agents):
 
 1. Derive acceptance criteria from the session's contract or plan. Each gate must be independently verifiable and tied to a specific artifact, build command, or integration test.
-2. Write the gates to `notes\active\[SessionFolder]\GATES.md` from the workflow's GATES template.
+2. Write the gates to `.flybywire\active\[SessionFolder]\GATES.md` from the workflow's GATES template.
 3. Freeze the file: record the freeze timestamp and declare "GATES.md is frozen."
 
 **Frozen means frozen.** After `GATES.md` is written and the user approves moving into the implementation phase, do not modify it. Any post-freeze modification — including retroactive wording changes, scope narrowing, or criterion relaxation — renders the affected gate `INVALID` and is an automatic audit failure.

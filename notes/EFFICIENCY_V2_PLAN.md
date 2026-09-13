@@ -144,7 +144,7 @@ Document the "fit the skill to your environment" process for a general release: 
 
 - Refresh `eval\ab\flybywire\references\` staged copies whenever a staged file changes in v2 (currently staged: SKILL.md, Router.md, CORE_PROTOCOLS.md, BugfixPlanning.md, PlanImplementation.md, ChangelogInvestigator.md).
 - Update README "Updating" adaptations list for each structural change.
-- The SkillBenchmark bundle at `C:\Users\Matt\source\repos\SkillBenchmark\skills\flybywire\SKILL.md` bundles only SKILL.md + Router.md — refresh only if those two change (they shouldn't; see Guardrails).
+- The SkillBenchmark bundle at `~/source/repos\SkillBenchmark\skills\flybywire\SKILL.md` bundles only SKILL.md + Router.md — refresh only if those two change (they shouldn't; see Guardrails).
 
 ---
 
@@ -207,7 +207,7 @@ Spawn a sub-agent pointed at the v2 skill with a sample request per touched work
 ### T5 — A/B process eval (needs Gemini key + npm harness; run before v2 promotion)
 
 - Refresh fixture: copy changed v2 files over `eval\ab\flybywire\references\`.
-- Re-run the iteration-4 frozen assertions per `eval\TESTING.md` Phase 2 (`eval\agent-skills-eval.yaml`; tool installed at `C:\Users\Matt\source\repos\node_modules`).
+- Re-run the iteration-4 frozen assertions per `eval\TESTING.md` Phase 2 (`eval\agent-skills-eval.yaml`; tool installed at `~/source/repos\node_modules`).
 - **Baseline (must not regress):** with_skill 16/16 (100%) vs without_skill 8/16. A drop on any of the 16 assertions means compression removed behavioral value — find it and restore.
 - Caveat carried from Phase 2: judge = target model (self-grading risk); read per-assertion evidence manually on any failure.
 
@@ -224,7 +224,7 @@ Verifies the primary/secondary deployment still behaves (procedure validated 202
 
 ## 6. Environment Notes for Running Tests
 
-- API keys via env vars only (`GEMINI_API_KEY`, `MISTRAL_API_KEY`); never written to files. (Keys that appeared in chat during earlier setup should be rotated when eval wraps up.)
+- API keys via env vars only (`GEMINI_API_KEY`, `MISTRAL_API_KEY`); never written to files. (Keys that appeared in chat during earlier setup were rotated after eval wrapped up.)
 - Git Bash `curl` fails on HTTPS without `curl --ssl-no-revoke` (schannel/AVG issue). Node/npm/Python unaffected.
 - Gemini free tier: ~500 requests/day/project/model — budget T2/T5 runs accordingly; Mistral free tier has no daily cap.
 - Docker works only inside WSL2 (`wsl -d Ubuntu -- bash -lc "..."`) — not needed for any test above.

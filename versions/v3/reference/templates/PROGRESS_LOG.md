@@ -11,4 +11,4 @@
 - [None / Chunk C[N]: description]
 
 ### Decisions Made
-- [e.g., "Kept legacy slot-3 fallback in F4B_container for non-player actors"]
+- [e.g., "Kept legacy slot-3 fallback in src/sync/container.ts for legacy callers"]

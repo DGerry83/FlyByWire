@@ -8,7 +8,7 @@ Shared scaffolding for implementer sub-agent delegation prompts. Used by `Bugfix
 
 ## Block A — Onboarding (cache-first)
 
-The cache-first environment procedure is defined in `..\CORE_PROTOCOLS.md` §4; this block is its delegation-prompt form.
+The cache-first environment procedure is defined in `../CORE_PROTOCOLS.md` §4; this block is its delegation-prompt form.
 
 ```markdown
 MANDATORY ONBOARDING - Complete before any implementation work:
@@ -19,7 +19,7 @@ MANDATORY ONBOARDING - Complete before any implementation work:
    - Read CORE_PROTOCOLS.md for shared rules (artifact placement, session naming, shell syntax, minimal change, parallel policy)
 
 2. **Environment Setup (cache-first)**:
-   - Read `notes\knowledge\ENVIRONMENT.md` (the environment cache); adopt its shell, chaining operator, and quirks
+   - Read `.flybywire\knowledge\ENVIRONMENT.md` (the environment cache); adopt its shell, chaining operator, and quirks
    - Run the single verify probe: one trivial command chained with the cached operator (e.g., `ls && ls` in bash, `ls; ls` in PowerShell)
    - If the cache is missing, its project root does not match, or the probe fails: run full onboarding per CORE_PROTOCOLS.md §4.2 and rewrite the cache
    - Verify you can access your assigned scope directory

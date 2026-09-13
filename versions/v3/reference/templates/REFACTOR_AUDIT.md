@@ -24,9 +24,9 @@
 Export Comparison:
 | Item | Pre-Location | Post-Location | Status |
 |--------------------|--------------|-----------------|--------|
-| `GameUI` | Original.psc | Original.psc (facade) | Verified |
-| `MenuScreen` | Original.psc | MenuScreen.psc (new) | Verified |
-| [Internal helper] | Original.psc | shared/helpers.psc | N/A |
+| `GameUI` | Original.ts | Original.ts (facade) | Verified |
+| `MenuScreen` | Original.ts | MenuScreen.ts (new) | Verified |
+| [Internal helper] | Original.ts | shared/helpers.ts | N/A |
 
 **API Check Result**: [PASS / FAIL]
 **Integration Test**: [PASS / FAIL / Skipped]
@@ -55,4 +55,4 @@ Export Comparison:
 
 ### Recommendations
 - [Clear to proceed / Fix required: [specific issues]]
-- [Future improvements: e.g., "Consider extracting BoardHUD further into sub-modules"]
+- [Future improvements: e.g., "Consider extracting BoardOverlay further into sub-modules"]

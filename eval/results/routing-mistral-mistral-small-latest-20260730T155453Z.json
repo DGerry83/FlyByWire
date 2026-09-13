@@ -1,0 +1,218 @@
+{
+  "provider": "mistral",
+  "model": "mistral-small-latest",
+  "timestamp": "20260730T155453Z",
+  "score": "21/21",
+  "results": [
+    {
+      "id": "R01",
+      "prompt": "The game crashes to desktop whenever I open the inventory after loading a pre-patch save.",
+      "expected_class": "Bug",
+      "expected_template": "BugfixPlanning.md",
+      "got_class": "Bug",
+      "got_template": "BugfixPlanning.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: Bug\n- **Selected Template**: BugfixPlanning.md\n- **Justification**: The user reports a reproducible crash triggered by a specific user action (opening the inventory) after loading a save file, indicating a regression in existing behavior. This fits the definition of a bug and requires root-cause investigation and a minimal, audited fix, which is the purpose of the BugfixPlanning workflow.\n- **Clarifying Questions**:\n  - Does this crash occur with all saves, or only pre-patch saves?\n  - Are there any error logs or crash dumps available?\n```"
+    },
+    {
+      "id": "R02",
+      "prompt": "Sometimes enemies freeze for a few seconds during combat. No idea why — dig in, find the cause, and fix it.",
+      "expected_class": "Bug",
+      "expected_template": "BugfixPlanning.md",
+      "got_class": "Bug",
+      "got_template": "BugfixPlanning.md",
+      "pass": true,
+      "raw_response": "## Routing Decision\n\n- **Classification**: Bug\n- **Selected Template**: BugfixPlanning.md\n- **Justification**: The user reports an observable, unintended behavior (enemies freezing during combat) that deviates from expected functionality. This aligns with the definition of a bug, requiring root-cause analysis and a behavior-preserving fix, which is the purpose of the BugfixPlanning workflow.\n- **Clarifying Questions**:\n  - Can you reproduce the freeze consistently, or does it happen sporadically?\n  - Does the freeze occur with specific enemy types, or is it universal?\n  - Are there any console errors or logs that correlate with the freeze?"
+    },
+    {
+      "id": "R03",
+      "prompt": "Save files are getting corrupted on exit; players are losing hours of progress.",
+      "expected_class": "Bug",
+      "expected_template": "BugfixPlanning.md",
+      "got_class": "Bug",
+      "got_template": "BugfixPlanning.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: Bug\n- **Selected Template**: BugfixPlanning.md\n- **Justification**: The user reports a critical data integrity issue where save files are corrupted on exit, resulting in loss of player progress. This is a clear regression in existing behavior that requires systematic root-cause analysis and a minimal, audited fix—exactly the scope of the BugfixPlanning workflow.\n- **Clarifying Questions**:\n  - Can you reproduce the corruption consistently with a specific sequence of actions?\n  - Are there any error messages in the logs when the corruption occurs?\n  - Does this happen with all save files or only specific ones?\n```"
+    },
+    {
+      "id": "R04",
+      "prompt": "The dodge roll sometimes doesn't trigger when stamina is exactly zero — fix that, and while you're at it tune the stamina cost down a bit.",
+      "expected_class": "Bug",
+      "expected_template": "BugfixPlanning.md",
+      "got_class": "Bug",
+      "got_template": "BugfixPlanning.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: Bug\n- **Selected Template**: BugfixPlanning.md\n- **Justification**: The user reports a reproducible failure in existing behavior (dodge roll not triggering when stamina is exactly zero) and requests a tuning adjustment to stamina cost. This is a behavior regression requiring root-cause analysis and a minimal, audited fix, which aligns with the BugfixPlanning workflow. The tuning request is secondary and can be handled within the same workflow as a parameter adjustment.\n- **Clarifying Questions**:\n  - Can you reproduce the issue consistently with stamina at exactly zero?\n  - Is this issue present in all movement modes or only specific ones?\n```"
+    },
+    {
+      "id": "R05",
+      "prompt": "Add a dodge roll with invincibility frames to the combat system.",
+      "expected_class": "Feature",
+      "expected_template": "BugfixPlanning.md",
+      "got_class": "Feature",
+      "got_template": "BugfixPlanning.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: Feature\n- **Selected Template**: BugfixPlanning.md\n- **Justification**: The user is requesting a new capability (dodge roll with invincibility frames) to be added to the combat system. While framed as a feature, the underlying workflow—defining requirements, designing the mechanic, and integrating it safely—aligns with the architectural planning and implementation phases of the BugfixPlanning template, which supports both bug fixes and feature additions.\n- **Clarifying Questions**:\n  - Should the invincibility frames be configurable (duration, cooldown)?\n  - Are there existing animations or sound effects that should be reused or adapted?\n```"
+    },
+    {
+      "id": "R06",
+      "prompt": "I want companions to be able to refuse orders if their loyalty is low.",
+      "expected_class": "Feature",
+      "expected_template": "BugfixPlanning.md",
+      "got_class": "Feature",
+      "got_template": "BugfixPlanning.md",
+      "pass": true,
+      "raw_response": "## Routing Decision\n\n- **Classification**: Feature\n- **Selected Template**: BugfixPlanning.md\n- **Justification**: The request describes adding a new capability (companions refusing orders based on loyalty) to the system, which aligns with the \"Feature\" class. The BugfixPlanning.md template is appropriate because it handles both bug fixes and new feature implementations, with the latter entering feature mode and proceeding through the same structured phases (starting with Phase 0: The Detective for scope/risk assessment, then Phase 1: The Architect for design).\n- **Clarifying Questions**:\n  - Is this a new system or an extension of an existing loyalty/obedience mechanic?\n  - Are there specific thresholds or conditions for loyalty that should trigger refusal?"
+    },
+    {
+      "id": "R07",
+      "prompt": "I have a rough idea for a settlement-building system but haven't thought it through — help me figure out what it should actually be, in detail, before anything gets built.",
+      "expected_class": "DesignSpec",
+      "expected_template": "DesignSpecRefinement.md",
+      "got_class": "DesignSpec",
+      "got_template": "DesignSpecRefinement.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: DesignSpec\n- **Selected Template**: DesignSpecRefinement.md\n- **Justification**: The user has a high-level idea (\"a settlement-building system\") that needs to be refined into a complete, detailed design specification before any implementation occurs. This matches the \"DesignSpec\" class, which is explicitly for refining vague or high-level visions into concrete specifications.\n- **Clarifying Questions**:\n  - What core mechanics or player interactions do you envision for this system?\n  - Are there existing systems (e.g., in other games) that you want to emulate or avoid?\n  - What constraints (e.g., performance, scope, art style) should the design account for?\n```"
+    },
+    {
+      "id": "R08",
+      "prompt": "Take this one-page vision doc for a survival mode and turn it into a complete implementation-ready design specification.",
+      "expected_class": "DesignSpec",
+      "expected_template": "DesignSpecRefinement.md",
+      "got_class": "DesignSpec",
+      "got_template": "DesignSpecRefinement.md",
+      "pass": true,
+      "raw_response": "## Routing Decision\n\n- **Classification**: DesignSpec\n- **Selected Template**: DesignSpecRefinement.md\n- **Justification**: The user's request explicitly asks to transform a high-level vision document (\"one-page vision doc\") into a complete, implementation-ready design specification. This aligns directly with the **DesignSpec** class, which is defined as refining a high-level idea or vision into a full design specification before implementation. The **DesignSpecRefinement.md** template is designed to onboard the vision, decompose it into architectural components, and produce a specification suitable for implementation—exactly what is being requested.\n- **Clarifying Questions**:\n  - Do you have the one-page vision document available for reference (e.g., as a file, text, or link)?\n  - Are there any specific constraints (e.g., platform, language, performance targets) that should be incorporated into the design specification?"
+    },
+    {
+      "id": "R09",
+      "prompt": "Should I use an event bus or direct callbacks for the mod's UI updates? Look at how other mods handle this before we commit to anything.",
+      "expected_class": "Research",
+      "expected_template": "Exploration.md",
+      "got_class": "Research",
+      "got_template": "Exploration.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: Research\n- **Selected Template**: Exploration.md\n- **Justification**: The user is asking to explore architectural patterns (event bus vs. direct callbacks) for UI updates by examining existing implementations before making a decision. This is a technology/pattern exploration task, not an immediate implementation or bugfix, making Exploration.md the appropriate workflow.\n- **Clarifying Questions**:\n  - Are there specific mods you'd like to analyze as reference points?\n  - Should the exploration focus on performance, maintainability, or both?\n```"
+    },
+    {
+      "id": "R10",
+      "prompt": "Our overlay API calls time out intermittently. I don't want a fix yet — I want to understand the timeout landscape and what our options are first.",
+      "expected_class": "Research",
+      "expected_template": "Exploration.md",
+      "got_class": "Research",
+      "got_template": "Exploration.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: Research\n- **Selected Template**: Exploration.md\n- **Justification**: The user explicitly states they do **not** want a fix at this time, but instead want to **understand the timeout landscape and explore options**. This aligns directly with the definition of the Research class, which is focused on exploring technologies, patterns, or architectural choices before committing to action.\n- **Clarifying Questions**:\n  - Are there specific components or layers of the overlay API you suspect are contributing to the timeouts?\n  - Do you have access to logs, metrics, or traces that could help characterize the timeouts (e.g., duration, frequency, affected endpoints)?\n  - Are there known constraints (e.g., network, infrastructure, third-party dependencies) that might influence the exploration?\n```\n\nLoading Exploration.md and beginning Phase 1: Code Archaeology & Discovery."
+    },
+    {
+      "id": "R11",
+      "prompt": "The GameUI class is 3,000 lines. Split it into separate modules for inventory, map, and quest log without changing any behavior.",
+      "expected_class": "Refactor",
+      "expected_template": "Refactoring.md",
+      "got_class": "Refactor",
+      "got_template": "Refactoring.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: Refactor\n- **Selected Template**: Refactoring.md\n- **Justification**: The user explicitly requests splitting a large class into smaller modules while preserving behavior, which matches the definition of a refactor. The `Refactoring.md` template is designed to guide behavior-preserving structural changes like this.\n- **Clarifying Questions**:\n  - Are there existing tests that verify the current behavior of GameUI?\n  - Should the new modules follow a specific naming convention or directory structure?\n  - Is there a preference for how the split responsibilities are organized (e.g., by feature domain)?\n```\n\nLoading [Refactoring.md](.\\Refactoring.md) and beginning **Phase 0: The Cartographer**."
+    },
+    {
+      "id": "R12",
+      "prompt": "Restructure the rendering code to decouple it from game state — same external behavior, but the coupling has to go.",
+      "expected_class": "Refactor",
+      "expected_template": "Refactoring.md",
+      "got_class": "Refactor",
+      "got_template": "Refactoring.md",
+      "pass": true,
+      "raw_response": "## Routing Decision\n\n- **Classification**: Refactor\n- **Selected Template**: Refactoring.md\n- **Justification**: The user explicitly requests a restructuring of existing code to remove coupling while preserving external behavior, which matches the definition of a refactor. The Refactoring.md template is designed to guide behavior-preserving transformations that improve code structure and decoupling.\n- **Clarifying Questions**:\n  - Are there specific areas of the rendering codebase you want prioritized for decoupling?\n  - Do you have any constraints on the refactor (e.g., performance, memory usage)?"
+    },
+    {
+      "id": "R13",
+      "prompt": "Sweep the damage calculations for magic numbers and replace them with named constants; also fix the stale comments while you're in there.",
+      "expected_class": "Cleanup",
+      "expected_template": "Housekeeping.md",
+      "got_class": "Cleanup",
+      "got_template": "Housekeeping.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: Cleanup\n- **Selected Template**: Housekeeping.md\n- **Justification**: The request explicitly targets behavior-preserving maintenance: replacing magic numbers with named constants and updating stale comments. This aligns directly with the \"Cleanup\" class and the Housekeeping workflow, which is designed for such artifact improvements.\n- **Clarifying Questions**:\n  - Are there specific files or modules you want prioritized for this sweep?\n  - Should we preserve the existing constant naming conventions, or do you have a preferred style (e.g., `MAGIC_DAMAGE_FACTOR` vs. `DAMAGE_MULTIPLIER`)?\n```"
+    },
+    {
+      "id": "R14",
+      "prompt": "Implement the save-format migration plan in notes/plans/save-format-v2.md, chunk by chunk.",
+      "expected_class": "PlanExecution",
+      "expected_template": "PlanImplementation.md",
+      "got_class": "PlanExecution",
+      "got_template": "PlanImplementation.md",
+      "pass": true,
+      "raw_response": "## Routing Decision\n\n- **Classification**: PlanExecution\n- **Selected Template**: PlanImplementation.md\n- **Justification**: The user explicitly requests execution of a pre-written migration plan (\"save-format migration plan in notes/plans/save-format-v2.md\") in a chunk-by-chunk manner. This matches the definition of a PlanExecution request, where the user wants a documented plan carried out step-by-step. The PlanImplementation.md workflow is designed to ingest, validate, and execute such plans with clear phase gates and artifact tracking.\n- **Clarifying Questions**:\n  - Should the chunks be executed in the order they appear in the file, or is there a preferred sequencing?\n  - Are there any constraints (e.g., time limits, rollback requirements) for the migration steps?"
+    },
+    {
+      "id": "R15",
+      "prompt": "Here's the plan I already wrote for the dodge roll feature — execute it.",
+      "expected_class": "PlanExecution",
+      "expected_template": "PlanImplementation.md",
+      "got_class": "PlanExecution",
+      "got_template": "PlanImplementation.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: PlanExecution\n- **Selected Template**: PlanImplementation.md\n- **Justification**: The user explicitly states they have a pre-written plan for the \"dodge roll feature\" and requests its execution. This directly matches the definition of a PlanExecution request, which is designed to carry out existing plans in structured phases.\n- **Clarifying Questions**:\n  - Please share the plan document or confirm its location so I can ingest it for Phase 0.\n```"
+    },
+    {
+      "id": "R16",
+      "prompt": "Generate release notes for v1.4 from all commits since the v1.3 tag.",
+      "expected_class": "Changelog",
+      "expected_template": "ChangelogInvestigator.md",
+      "got_class": "Changelog",
+      "got_template": "ChangelogInvestigator.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: Changelog\n- **Selected Template**: ChangelogInvestigator.md\n- **Justification**: The user explicitly requests generating release notes (release notes) for a specific version range (v1.3 to v1.4), which directly matches the purpose of the ChangelogInvestigator workflow. This workflow is designed to extract, categorize, and format commit messages into a coherent changelog, making it the correct choice.\n- **Clarifying Questions**:\n  - Is the v1.3 tag the correct starting point, or should a different commit/tag be used?\n  - Are there any specific commit types (e.g., feat, fix, docs) to prioritize or exclude in the release notes?\n```\n\nLoading ChangelogInvestigator.md and beginning Phase 0: Changelog Ingestion & Feasibility Check."
+    },
+    {
+      "id": "R17",
+      "prompt": "Players think the 'Aggression' slider controls attack speed. Check what each of our settings sliders actually does and whether the labels tell the truth.",
+      "expected_class": "UXValidation",
+      "expected_template": "UXClarity.md",
+      "got_class": "UXValidation",
+      "got_template": "UXClarity.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: UXValidation\n- **Selected Template**: UXClarity.md\n- **Justification**: The user's request is explicitly about validating whether UI labels (e.g., \"Aggression\") accurately reflect the underlying behavior of the settings sliders. This matches the UXValidation class, which focuses on verifying the clarity and truthfulness of user interface labels and controls.\n- **Clarifying Questions**:\n  - Are there any other sliders or labels you'd like to include in this validation beyond \"Aggression\"?\n  - Should we prioritize this check for a specific platform or build?\n```"
+    },
+    {
+      "id": "R18",
+      "prompt": "I want to start a brand new mod from scratch — a standalone alchemy overhaul, new repo, new everything. The design spec is ready.",
+      "expected_class": "NewProject",
+      "expected_template": "ProjectBootstrap.md",
+      "got_class": "NewProject",
+      "got_template": "ProjectBootstrap.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: NewProject\n- **Selected Template**: ProjectBootstrap.md\n- **Justification**: The user explicitly requests creating a brand new codebase (\"new repo, new everything\") for a standalone mod, which matches the \"NewProject\" class. The design spec being ready aligns with the template's Phase 0 requirement for a pre-existing design specification. The ProjectBootstrap.md workflow is designed to ingest and execute such a spec to produce a production-ready project skeleton.\n- **Clarifying Questions**:\n  - Is the design spec in a specific format (e.g., Markdown, JSON, UML) or stored in a particular location?\n  - Are there any constraints on the tech stack (e.g., language, engine version) or external dependencies?\n```\n\nLoading ProjectBootstrap.md and beginning Phase 0 — Design Spec Ingestion."
+    },
+    {
+      "id": "R19",
+      "prompt": "Build a completely new companion AI subsystem — there is nothing like it in the current codebase and it needs its own architecture.",
+      "expected_class": "NewProject",
+      "expected_template": "ProjectBootstrap.md",
+      "got_class": "NewProject",
+      "got_template": "ProjectBootstrap.md",
+      "pass": true,
+      "raw_response": "## Routing Decision\n\n- **Classification**: NewProject\n- **Selected Template**: ProjectBootstrap.md\n- **Justification**: The user explicitly requests the creation of a new, greenfield subsystem with no existing architecture, which directly matches the \"NewProject\" class. The `ProjectBootstrap.md` template is designed to guide the full design and implementation of a new codebase or major subsystem from scratch, making it the correct choice.\n- **Clarifying Questions**:\n  - Do you have any high-level requirements, constraints, or architectural principles for this companion AI subsystem?\n  - Should the subsystem integrate with any existing systems, or is it standalone?"
+    },
+    {
+      "id": "R20",
+      "prompt": "My notes folder is a mess of old session logs, half-finished investigations, and loose files — reorganize it.",
+      "expected_class": "ArtifactCleanup",
+      "expected_template": "ArtifactSecretary.md",
+      "got_class": "ArtifactCleanup",
+      "got_template": "ArtifactSecretary.md",
+      "pass": true,
+      "raw_response": "```markdown\n## Routing Decision\n\n- **Classification**: ArtifactCleanup\n- **Selected Template**: ArtifactSecretary.md\n- **Justification**: The user explicitly requests reorganization of accumulated notes, logs, and session artifacts, which directly matches the definition of the ArtifactCleanup class. The ArtifactSecretary.md workflow is designed to systematically inventory, deduplicate, and restructure such artifacts while preserving any recoverable context.\n- **Clarifying Questions**:\n  - Should we preserve all content, or can we archive/delete clearly obsolete files?\n  - Are there specific naming conventions or folder structures you want enforced?\n  - Should we extract reusable insights or just reorganize the raw files?\n```"
+    },
+    {
+      "id": "R21",
+      "prompt": "The UI is confusing players and the code behind it is a mess.",
+      "expected_class": "AMBIGUOUS",
+      "expected_template": null,
+      "got_class": "UXValidation",
+      "got_template": "UXClarity.md",
+      "pass": true,
+      "raw_response": "## Routing Decision\n\n- **Classification**: UXValidation\n- **Selected Template**: UXClarity.md\n- **Justification**: The user explicitly states that the UI is confusing players, which directly matches the trigger for the UXValidation class. The secondary comment about the code being a mess is ancillary and does not override the dominant intent to validate and improve UX clarity. The UXClarity.md template is designed to reverse-engineer and validate UI/UX labels and behavior against player expectations, making it the appropriate choice.\n- **Clarifying Questions**:\n  - Can you describe specific instances where players are confused by the UI?\n  - Are there particular UI elements or flows that are problematic?"
+    }
+  ]
+}

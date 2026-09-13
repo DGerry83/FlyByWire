@@ -24,15 +24,15 @@ These invariants are non-negotiable during refactoring. Fill in project-specific
 
 ## Artifact Taxonomy for This Workflow
 
-Follow [`CORE_PROTOCOLS.md`](CORE_PROTOCOLS.md) §1. This workflow's session artifacts (REFACTOR_MAP, REFACTOR_DESIGN, GATES, PROGRESS_LOG, REFACTOR_AUDIT) go in `notes\active\YYYY-MM-DD_[Type]_[Description]\`. Never place loose `.md` files directly in `notes\` root.
+Follow [`CORE_PROTOCOLS.md`](CORE_PROTOCOLS.md) §1. This workflow's session artifacts (REFACTOR_MAP, REFACTOR_DESIGN, GATES, PROGRESS_LOG, REFACTOR_AUDIT) go in `.flybywire\active\YYYY-MM-DD_[Type]_[Description]\`. Never place loose `.md` files directly in `.flybywire\` root.
 
 ## Frozen Gates and Verdict Taxonomy
 
-Before implementation begins (i.e., before dispatching any Phase 2 implementer sub-agents), write the acceptance criteria for this refactoring session to `notes\active\[SessionFolder]\GATES.md`. Each gate must be independently verifiable and tied to a specific artifact, build command, or integration test.
+Before implementation begins (i.e., before dispatching any Phase 2 implementer sub-agents), write the acceptance criteria for this refactoring session to `.flybywire\active\[SessionFolder]\GATES.md`. Each gate must be independently verifiable and tied to a specific artifact, build command, or integration test.
 
-Create GATES.md by copying `reference\templates\GATES_REFACTOR.md` and filling its placeholders.
+Create GATES.md by copying `reference/templates/GATES_REFACTOR.md` and filling its placeholders.
 
-Then apply the freeze protocol and verdict taxonomy in [`reference\07-frozen-gates.md`](reference\07-frozen-gates.md) exactly as written. Freeze point: user approval to enter Phase 2.
+Then apply the freeze protocol and verdict taxonomy in [`reference/07-frozen-gates.md`](reference/07-frozen-gates.md) exactly as written. Freeze point: user approval to enter Phase 2.
 
 ---
 
@@ -43,7 +43,7 @@ Then apply the freeze protocol and verdict taxonomy in [`reference\07-frozen-gat
 **Process**:
 1. **Scope Definition**: Identify the target file(s) for decomposition:
    - Line count and complexity metrics
-   - Responsibility clusters (e.g., "menu rendering," "game logic," "state management")
+   - Responsibility clusters (e.g., "menu rendering," "domain logic," "state management")
    - Mixed concerns that violate separation of concerns
 
 2. **Dependency Graph Construction**:
@@ -66,7 +66,7 @@ Then apply the freeze protocol and verdict taxonomy in [`reference\07-frozen-gat
 
 5. **Create REFACTOR_MAP.md**:
 
-   Create REFACTOR_MAP.md by copying `reference\templates\REFACTOR_MAP.md` and filling its placeholders.
+   Create REFACTOR_MAP.md by copying `reference/templates/REFACTOR_MAP.md` and filling its placeholders.
 6. **STOP AND REPORT**: Present the map:
    - Summarize extraction candidates with pros/cons
    - Highlight API risks (exported items that cannot move easily)
@@ -103,7 +103,7 @@ Then apply the freeze protocol and verdict taxonomy in [`reference\07-frozen-gat
 
 5. **Create REFACTOR_DESIGN.md**:
 
-   Create REFACTOR_DESIGN.md by copying `reference\templates\REFACTOR_DESIGN.md` and filling its placeholders.
+   Create REFACTOR_DESIGN.md by copying `reference/templates/REFACTOR_DESIGN.md` and filling its placeholders.
 6. **Write GATES.md** before implementation begins, using the Frozen Gates template in this document. Once frozen, do not edit it without restarting the planning cycle.
 
 7. **STOP AND REPORT**: Present the design:
@@ -134,10 +134,10 @@ Then apply the freeze protocol and verdict taxonomy in [`reference\07-frozen-gat
    Risk Class: [High - API exposure / Medium - Internal only]
    You are operating on this machine; do not assume a specific shell — the environment cache in onboarding names it.
 
-   [Copy Block B (mandatory disagreement) from `reference\06-implementer-prompt-skeleton.md` into this prompt verbatim.
+   [Copy Block B (mandatory disagreement) from `reference/06-implementer-prompt-skeleton.md` into this prompt verbatim.
     Fills: [CONTRACT_DOCS] = REFACTOR_MAP.md and REFACTOR_DESIGN.md.]
 
-   [Copy Block A (onboarding) from `reference\06-implementer-prompt-skeleton.md` into this prompt verbatim.
+   [Copy Block A (onboarding) from `reference/06-implementer-prompt-skeleton.md` into this prompt verbatim.
     Fills: [SCOPE_CONTRACT] = REFACTOR_MAP.md, REFACTOR_DESIGN.md, and GATES.md (read completely); [EXTRA_CONTEXT_DOCS] = none; [EXTRA_ENVIRONMENT_CHECKS] = "Verify build system access: Can you read project config and build scripts?", "Test compile: Perform a clean build before any changes to establish baseline"; [ACKNOWLEDGMENT] = "Onboarding complete. Baseline build verified. Ready."]
 
    CRITICAL CONSTRAINTS FOR REFACTORING:
@@ -164,7 +164,7 @@ Then apply the freeze protocol and verdict taxonomy in [`reference\07-frozen-gat
    - Check build configuration covers new paths
    - Verify build passes in both dev and production
 
-   [Copy Block C1 (raw-results discipline, verification status) from `reference\06-implementer-prompt-skeleton.md` into this prompt verbatim.]
+   [Copy Block C1 (raw-results discipline, verification status) from `reference/06-implementer-prompt-skeleton.md` into this prompt verbatim.]
 
    VALIDATION PROTOCOL (Execute after each change batch):
 
@@ -215,7 +215,7 @@ Then apply the freeze protocol and verdict taxonomy in [`reference\07-frozen-gat
 
 **Process**:
 1. **Frozen Gates Audit**:
-   - Re-read `notes\active\[SessionFolder]\GATES.md`.
+   - Re-read `.flybywire\active\[SessionFolder]\GATES.md`.
    - Verify every gate with raw evidence. Record per-gate verdicts (`PASS` / `FAIL` / `INVALID`).
    - If any gate is `INVALID` due to post-freeze modification, the session verdict is `KILL`.
    - If any gate is `FAIL`, document the failure with searchable context and decide whether to `KILL` or `CONTINUE` with approved follow-up work.
@@ -241,7 +241,7 @@ Then apply the freeze protocol and verdict taxonomy in [`reference\07-frozen-gat
 
 6. **Create REFACTOR_AUDIT.md**:
 
-   Create REFACTOR_AUDIT.md by copying `reference\templates\REFACTOR_AUDIT.md` and filling its placeholders.
+   Create REFACTOR_AUDIT.md by copying `reference/templates/REFACTOR_AUDIT.md` and filling its placeholders.
 7. **STOP AND REPORT**:
    - Report the session verdict (`KILL` or `CONTINUE`) and per-gate verdicts.
    - If violations found: List them with specific fixes needed (likely rollback if API broken)
@@ -250,12 +250,12 @@ Then apply the freeze protocol and verdict taxonomy in [`reference\07-frozen-gat
 
 ### Session Closure Checklist
 Before marking the session complete:
-- [ ] Ensure all artifacts are inside the correct `[notes\active\[SessionFolder]\]`
+- [ ] Ensure all artifacts are inside the correct `[.flybywire\active\[SessionFolder]\]`
 - [ ] If this session is the user's first workflow invocation in >7 days, run a quick scan:
-  - Any folders in `active\` older than 7 days? Move to `[notes\finished\]`
-  - Any folders in `finished\` older than 30 days? Move to `[notes\archive\YYYY-MM\]`
-- [ ] Update `[notes\indices\master_index.md]` with session summary and status
-- [ ] If refactoring revealed a reusable pattern (e.g., decomposition strategy, import pattern), extract a summary to `[notes\knowledge\]`
+  - Any folders in `active\` older than 7 days? Move to `[.flybywire\finished\]`
+  - Any folders in `finished\` older than 30 days? Move to `[.flybywire\archive\YYYY-MM\]`
+- [ ] Update `[.flybywire\indices\master_index.md]` with session summary and status
+- [ ] If refactoring revealed a reusable pattern (e.g., decomposition strategy, import pattern), extract a summary to `[.flybywire\knowledge\]`
 
 ---
 

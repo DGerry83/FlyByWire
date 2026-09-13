@@ -4,30 +4,30 @@ This file contains the shared operational rules that are reused across the meta-
 
 **How to use this file:** Each workflow template should reference this file instead of repeating its contents. At the top of every template, include a short pointer such as:
 
-> **Shared protocols:** This template follows [`.\CORE_PROTOCOLS.md`](.\CORE_PROTOCOLS.md) for artifact taxonomy, session naming, shell constraints, sub-agent onboarding, sub-agent model selection, and shared principles. Do not duplicate those rules inside this template.
+> **Shared protocols:** This template follows [`./CORE_PROTOCOLS.md`](./CORE_PROTOCOLS.md) for artifact taxonomy, session naming, shell constraints, sub-agent onboarding, sub-agent model selection, and shared principles. Do not duplicate those rules inside this template.
 
 ---
 
 ## 1. Artifact Taxonomy
 
-All Markdown artifacts created during a workflow session must be placed according to their type. Do not place loose `.md` files directly in the `notes\` root.
+All Markdown artifacts created during a workflow session must be placed according to their type. The **artifact root** defaults to `.flybywire\` under the target project's root; a project may relocate it by declaring a different artifact root in its `AGENTS.md`. All taxonomy paths below are relative to that root. Do not place loose `.md` files directly in the artifact root.
 
 | Taxonomy bucket | Purpose | Path pattern |
 |-----------------|---------|--------------|
-| **Active sessions** | In-flight work, session-scoped artifacts (contracts, maps, logs, reports, audits) | `notes\active\YYYY-MM-DD_[Feature|Bug|Refactor|Research|PlanName]_[Description]\` |
-| **Knowledge base** | Consolidated reference docs, debugging guides, build instructions, reusable patterns | `notes\knowledge\[descriptive-name].md` |
-| **Plans and research** | Original plans, backlogs, roadmaps, research findings, investigation outputs | `notes\plans\[descriptive-name].md` (subfolders allowed) |
-| **Indices** | Master index, search aids, cross-references linking sessions to features or bugs | `notes\indices\master_index.md` (and related indices) |
+| **Active sessions** | In-flight work, session-scoped artifacts (contracts, maps, logs, reports, audits) | `.flybywire\active\YYYY-MM-DD_[Feature|Bug|Refactor|Research|PlanName]_[Description]\` |
+| **Knowledge base** | Consolidated reference docs, debugging guides, build instructions, reusable patterns | `.flybywire\knowledge\[descriptive-name].md` |
+| **Plans and research** | Original plans, backlogs, roadmaps, research findings, investigation outputs | `.flybywire\plans\[descriptive-name].md` (subfolders allowed) |
+| **Indices** | Master index, search aids, cross-references linking sessions to features or bugs | `.flybywire\indices\master_index.md` (and related indices) |
 
 ### 1.1 Archive Lifecycle
 
 Active sessions move through the following lifecycle:
 
-1. **Active** — current work lives in `notes\active\[SessionFolder]\`.
-2. **Finished** — when a session completes or after **7 days** of inactivity, move the folder from `notes\active\` to `notes\finished\`.
-3. **Archive** — after **30 days** total, move finished sessions from `notes\finished\` to `notes\archive\YYYY-MM\`, using the year-month of the session date (e.g., `notes\archive\2026-06\`).
+1. **Active** — current work lives in `.flybywire\active\[SessionFolder]\`.
+2. **Finished** — when a session completes or after **7 days** of inactivity, move the folder from `.flybywire\active\` to `.flybywire\finished\`.
+3. **Archive** — after **30 days** total, move finished sessions from `.flybywire\finished\` to `.flybywire\archive\YYYY-MM\`, using the year-month of the session date (e.g., `.flybywire\archive\2026-06\`).
 
-When closing a session, update `notes\indices\master_index.md` with the session summary and status, and extract any reusable patterns to `notes\knowledge\`.
+When closing a session, update `.flybywire\indices\master_index.md` with the session summary and status, and extract any reusable patterns to `.flybywire\knowledge\`.
 
 ---
 
@@ -47,8 +47,8 @@ YYYY-MM-DD_[Feature|Bug|Refactor|Research|PlanName]_[Description]
 
 - `2026-06-09_Refactor_GameUISplit`
 - `2026-06-09_Bug_SignalCascadeTiming`
-- `2026-06-10_Feature_NewArmorDegradationMode`
-- `2026-06-15_SAKRIntegration_Phase1Plumbing`
+- `2026-06-10_Feature_AdaptiveRateLimiting`
+- `2026-06-15_BillingIntegration_Phase1Plumbing`
 
 ### Forbidden patterns
 
@@ -63,7 +63,7 @@ Rationale: chronological sort, instant context, no ambiguity.
 
 ## 3. Environment and Shell Constraints
 
-Agents may run under any shell (PowerShell, Git Bash, cmd, or a Unix shell). **Do not assume a specific shell.** The per-project environment cache `notes\knowledge\ENVIRONMENT.md` (§4) records the shell in use, its chaining operator, and machine quirks — consult it instead of re-detecting.
+Agents may run under any shell (PowerShell, Git Bash, cmd, or a Unix shell). **Do not assume a specific shell.** The per-project environment cache `.flybywire\knowledge\ENVIRONMENT.md` (§4) records the shell in use, its chaining operator, and machine quirks — consult it instead of re-detecting.
 
 **The one rule:** command chaining is shell-specific — use `;` in PowerShell, `&&` (or `;`) in bash/sh. Never reuse a command from these templates verbatim if it targets a different shell than the cached one; translate it first. When delegating to sub-agents, state the cached shell and chaining operator in the sub-agent prompt instead of hardcoding a shell name.
 
@@ -85,13 +85,13 @@ Bash-style `&&` chaining fails in Windows PowerShell 5.1 — translate, don't co
 
 ## 4. Sub-Agent Onboarding and the Environment Cache
 
-Environment onboarding runs **fully once per project** and caches its findings to `notes\knowledge\ENVIRONMENT.md` (in the target project, not this library). Every later onboarding — main agent or sub-agent — **reads the cache instead of re-probing**.
+Environment onboarding runs **fully once per project** and caches its findings to `.flybywire\knowledge\ENVIRONMENT.md` (in the target project, not the skill directory). Every later onboarding — main agent or sub-agent — **reads the cache instead of re-probing**.
 
 ### 4.1 Cache-First Procedure
 
 At the start of any session or delegation:
 
-1. **Look for the cache**: `notes\knowledge\ENVIRONMENT.md` under the project root.
+1. **Look for the cache**: `.flybywire\knowledge\ENVIRONMENT.md` under the project root.
 2. **If found**:
    - **Staleness check (zero-cost)**: the cached project-root path must match the current working directory. Mismatch → treat as missing (step 3).
    - Read the cache; adopt its shell, chaining operator, build/test commands, and quirks.
@@ -109,11 +109,11 @@ Run this procedure once, then write the cache so future onboardings skip it:
 3. List the project root; confirm read/write access to the workspace.
 4. Determine the native chaining operator (`;` in PowerShell, `&&` in bash) and the build/test commands.
 5. Note machine quirks: tools reachable only through another shell or wrapper, required flags or environment variables — anything a future session would otherwise rediscover by failing.
-6. Write `notes\knowledge\ENVIRONMENT.md` from [`.\reference\templates\ENVIRONMENT.md`](.\reference\templates\ENVIRONMENT.md), filling every field.
+6. Write `.flybywire\knowledge\ENVIRONMENT.md` from [`./reference/templates/ENVIRONMENT.md`](./reference/templates/ENVIRONMENT.md), filling every field.
 
 ### 4.3 Delegating With the Cache
 
-Sub-agent prompt templates replace environment probing with a cache read: "Read `notes\knowledge\ENVIRONMENT.md`, adopt its shell and chaining operator, and run the single verify probe. If the cache is missing, its project root does not match, or the probe fails, run full onboarding per `CORE_PROTOCOLS.md` §4.2 and rewrite the cache." Scope-specific checks (baseline builds, version reports) stay in each template.
+Sub-agent prompt templates replace environment probing with a cache read: "Read `.flybywire\knowledge\ENVIRONMENT.md`, adopt its shell and chaining operator, and run the single verify probe. If the cache is missing, its project root does not match, or the probe fails, run full onboarding per `CORE_PROTOCOLS.md` §4.2 and rewrite the cache." Scope-specific checks (baseline builds, version reports) stay in each template.
 
 ---
 
@@ -159,7 +159,7 @@ Use the following classification schemes consistently across templates and audit
 
 | Class | Scope | Examples |
 |-------|-------|----------|
-| **Critical Path** | Shared state shape, public interfaces, core game logic, plugin record integrity | Public API changes, state field renames, record edits |
+| **Critical Path** | Shared state shape, public interfaces, core domain logic, data schema integrity | Public API changes, state field renames, record edits |
 | **Standard** | Internal business logic, calculations, non-public helper methods | Algorithm tweaks, private helpers |
 | **Presentational** | UI strings, comments, debug logging, magic numbers in non-critical calculations, formatting | Label changes, comment cleanup |
 
@@ -173,7 +173,7 @@ Use the following classification schemes consistently across templates and audit
 
 ### 5.5 Core Software Engineering Principles
 
-Enforce these as hard constraints on every component and plan. If a component violates a principle, redesign it. The full statement of each principle lives in [`.\reference\01-core-principles.md`](.\reference\01-core-principles.md); the checklist below is the audit authority — what auditors verify, including this project's specific twists.
+Enforce these as hard constraints on every component and plan. If a component violates a principle, redesign it. The full statement of each principle lives in [`./reference/01-core-principles.md`](./reference/01-core-principles.md); the checklist below is the audit authority — what auditors verify, including this project's specific twists.
 
 - **Single Responsibility Principle (SRP)** — every module, class, or function has exactly one reason to change. **Test**: describe the component's job in one sentence without using "and" or "or"; if you cannot, split it. **Smell**: names containing `Manager`, `Handler`, `Utils`, `Helper`, `Processor` (when overloaded), or `System` (when monolithic).
 - **Don't Repeat Yourself (DRY)** — every piece of knowledge has a single, unambiguous representation. **Exception**: similar-looking pieces that change for *different reasons* must NOT be merged; similarity by coincidence is not shared knowledge.
@@ -237,7 +237,7 @@ All externally retrieved content — web search results, fetched pages, external
 
 ### 5.9 Native Interop & Hot-Path Checklist
 
-Any chunk, design, or audit that touches P/Invoke or native library loading, or code that runs once per frame/tick, must apply the checklist in [`reference\08-native-interop.md`](reference\08-native-interop.md): process-global state (scoped-and-restored or documented), hot-path allocation (zero or justified), and resource-acquisition symmetry (a release point on every exit path, including partial-failure returns). Load the checklist only when one of those triggers applies; chunk contracts record its verdicts (see `reference\templates\CHUNK_N_CONTRACT.md`).
+Any chunk, design, or audit that touches P/Invoke or native library loading, or code that runs once per frame/tick, must apply the checklist in [`reference/08-native-interop.md`](reference/08-native-interop.md): process-global state (scoped-and-restored or documented), hot-path allocation (zero or justified), and resource-acquisition symmetry (a release point on every exit path, including partial-failure returns). Load the checklist only when one of those triggers applies; chunk contracts record its verdicts (see `reference/templates/CHUNK_N_CONTRACT.md`).
 
 ---
 

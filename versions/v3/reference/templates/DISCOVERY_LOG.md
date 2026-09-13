@@ -23,7 +23,7 @@
 #### UI String Centralization (Maintenance Target)
 | Location | Hardcoded String | Proposed Constant Name | Target File |
 |----------|------------------|----------------------|-------------|
-| [UI.psc:Button] | "TEST CIRCUIT" | TestCircuitLabel | constants file |
+| [src/ui/MenuScreen.ts:Button] | "TEST CIRCUIT" | TestCircuitLabel | constants file |
 
 #### Pattern Consolidation
 | Location | Repeated Code | Proposed Extract | Description |
@@ -33,13 +33,13 @@
 #### Magic Numbers Inventory
 | Location | Literal | Context | Proposed Name | Destination |
 |----------|---------|---------|---------------|-------------|
-| [engine.psc] | 72 | Timer interval in seconds | DEFAULT_TIMER_SECONDS | constants file |
+| [engine.ts] | 72 | Timer interval in seconds | DEFAULT_TIMER_SECONDS | constants file |
 | [File.ext] | 3 | Default max retries | DEFAULT_MAX_RETRIES | constants file |
 
 #### Structural Concerns (Documentation Only - For Feature Workflow)
 | File | Lines | Concern | Recommended Action | Priority |
 |------|-------|---------|-------------------|----------|
-| [UI.psc] | 400 | Mixed screen logic + rendering | Split into screen scripts | Medium |
+| [MenuScreen.ts] | 400 | Mixed screen logic + rendering | Split into screen modules | Medium |
 
 **Note**: These are NOT executed in housekeeping. Document here for user review, then implement via Feature Implementation Workflow if approved.
 

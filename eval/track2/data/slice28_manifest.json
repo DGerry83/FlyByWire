@@ -1,0 +1,170 @@
+[
+  {
+    "instance_id": "cli__cli-495",
+    "language": "go",
+    "difficulty": "\u226415mins",
+    "repo": "cli/cli"
+  },
+  {
+    "instance_id": "cli__cli-402",
+    "language": "go",
+    "difficulty": "\u226415mins",
+    "repo": "cli/cli"
+  },
+  {
+    "instance_id": "cli__cli-2279",
+    "language": "go",
+    "difficulty": "\u226415mins",
+    "repo": "cli/cli"
+  },
+  {
+    "instance_id": "cli__cli-362",
+    "language": "go",
+    "difficulty": "\u226415mins",
+    "repo": "cli/cli"
+  },
+  {
+    "instance_id": "google__gson-1093",
+    "language": "java",
+    "difficulty": null,
+    "repo": "google/gson"
+  },
+  {
+    "instance_id": "fasterxml__jackson-databind-4257",
+    "language": "java",
+    "difficulty": null,
+    "repo": "fasterxml/jackson-databind"
+  },
+  {
+    "instance_id": "googlecontainertools__jib-4035",
+    "language": "java",
+    "difficulty": null,
+    "repo": "googlecontainertools/jib"
+  },
+  {
+    "instance_id": "fasterxml__jackson-dataformat-xml-544",
+    "language": "java",
+    "difficulty": null,
+    "repo": "fasterxml/jackson-dataformat-xml"
+  },
+  {
+    "instance_id": "iamkun__dayjs-1953",
+    "language": "javascript",
+    "difficulty": "\u226415mins",
+    "repo": "iamkun/dayjs"
+  },
+  {
+    "instance_id": "expressjs__express-5555",
+    "language": "javascript",
+    "difficulty": "\u226415mins",
+    "repo": "expressjs/express"
+  },
+  {
+    "instance_id": "anuraghazra__github-readme-stats-99",
+    "language": "javascript",
+    "difficulty": "15mins - 1h",
+    "repo": "anuraghazra/github-readme-stats"
+  },
+  {
+    "instance_id": "iamkun__dayjs-957",
+    "language": "javascript",
+    "difficulty": "\u226415mins",
+    "repo": "iamkun/dayjs"
+  },
+  {
+    "instance_id": "vuejs__core-11625",
+    "language": "typescript",
+    "difficulty": "\u226415mins",
+    "repo": "vuejs/core"
+  },
+  {
+    "instance_id": "mui__material-ui-23778",
+    "language": "typescript",
+    "difficulty": "\u226415mins",
+    "repo": "mui/material-ui"
+  },
+  {
+    "instance_id": "darkreader__darkreader-7241",
+    "language": "typescript",
+    "difficulty": "\u226415mins",
+    "repo": "darkreader/darkreader"
+  },
+  {
+    "instance_id": "vuejs__core-11813",
+    "language": "typescript",
+    "difficulty": "\u226415mins",
+    "repo": "vuejs/core"
+  },
+  {
+    "instance_id": "BurntSushi__ripgrep-954",
+    "language": "rust",
+    "difficulty": "\u226415mins",
+    "repo": "BurntSushi/ripgrep"
+  },
+  {
+    "instance_id": "clap-rs__clap-4667",
+    "language": "rust",
+    "difficulty": "\u226415mins",
+    "repo": "clap-rs/clap"
+  },
+  {
+    "instance_id": "sharkdp__bat-3075",
+    "language": "rust",
+    "difficulty": "\u226415mins",
+    "repo": "sharkdp/bat"
+  },
+  {
+    "instance_id": "tokio-rs__bytes-543",
+    "language": "rust",
+    "difficulty": "\u226415mins",
+    "repo": "tokio-rs/bytes"
+  },
+  {
+    "instance_id": "jqlang__jq-2157",
+    "language": "c",
+    "difficulty": "\u226415mins",
+    "repo": "jqlang/jq"
+  },
+  {
+    "instance_id": "ponylang__ponyc-2203",
+    "language": "c",
+    "difficulty": "\u226415mins",
+    "repo": "ponylang/ponyc"
+  },
+  {
+    "instance_id": "jqlang__jq-2839",
+    "language": "c",
+    "difficulty": "\u226415mins",
+    "repo": "jqlang/jq"
+  },
+  {
+    "instance_id": "jqlang__jq-2728",
+    "language": "c",
+    "difficulty": "\u226415mins",
+    "repo": "jqlang/jq"
+  },
+  {
+    "instance_id": "fmtlib__fmt-3158",
+    "language": "c++",
+    "difficulty": "\u226415mins",
+    "repo": "fmtlib/fmt"
+  },
+  {
+    "instance_id": "catchorg__Catch2-2288",
+    "language": "c++",
+    "difficulty": "\u226415mins",
+    "repo": "catchorg/Catch2"
+  },
+  {
+    "instance_id": "nlohmann__json-545",
+    "language": "c++",
+    "difficulty": "\u226415mins",
+    "repo": "nlohmann/json"
+  },
+  {
+    "instance_id": "simdjson__simdjson-644",
+    "language": "c++",
+    "difficulty": "15mins - 1h",
+    "repo": "simdjson/simdjson"
+  }
+]

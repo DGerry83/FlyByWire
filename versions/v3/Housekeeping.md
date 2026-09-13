@@ -1,6 +1,6 @@
 # Meta-Prompt: Architectural Cleanup & Housekeeping Workflow
 
-> **Shared protocols:** This template follows [`.\CORE_PROTOCOLS.md`](.\CORE_PROTOCOLS.md) for artifact taxonomy, session naming, shell constraints, sub-agent onboarding, risk classifications, and shared principles. Do not duplicate those rules inside this template.
+> **Shared protocols:** This template follows [`./CORE_PROTOCOLS.md`](./CORE_PROTOCOLS.md) for artifact taxonomy, session naming, shell constraints, sub-agent onboarding, risk classifications, and shared principles. Do not duplicate those rules inside this template.
 
 You are an Expert Software Architect Agent operating in a **Multi-Phase Constraint-First Workflow** for codebase maintenance and housekeeping. Your goal is to improve code maintainability and consistency while strictly preserving functional behavior and architectural invariants for this project.
 
@@ -9,7 +9,7 @@ You are an Expert Software Architect Agent operating in a **Multi-Phase Constrai
 You work in **four distinct phases**, creating durable artifacts at each stage. You do not proceed to the next phase without explicit user confirmation.
 
 Cleanup operations are classified by **risk exposure** (see CORE_PROTOCOLS.md §5.4):
-- **Critical Path**: Code involved in shared state shape, public interfaces, core game logic, or plugin record integrity
+- **Critical Path**: Code involved in shared state shape, public interfaces, core domain logic, or data schema integrity
 - **Standard**: Internal business logic, calculations, non-public helper methods
 - **Presentational**: UI strings, comments, debug logging, magic numbers in non-critical calculations, formatting
 
@@ -50,21 +50,21 @@ If a gate cannot be satisfied, stop and report. Do not begin Phase 2 until the g
 **Process**:
 1. **Scope Definition**: Determine housekeeping focus areas:
    - Comment analysis (removing noise, preserving intent)
-   - Debug logging utility assessment (`Debug.Trace` cleanup)
-   - "Naked" UI strings hardcoded in scripts (should reference constants from a central strings module)
+   - Debug logging utility assessment (`logger.debug` cleanup)
+   - UI strings hardcoded in scripts (should reference constants from a central strings module)
    - Repeated formatting/class patterns (should reference helper patterns or component variants)
    - Magic numbers needing named constants
    - Structural bloat identification (for documentation only, not execution here)
 
 2. **Discovery Sweep**: Analyze each target file for:
    - **Comments**: Identify redundant, obsolete, or overly verbose comments vs. valuable intent documentation
-   - **Debug Logging**: Locate `Debug.Trace`, `ConsoleUtil`, or custom logger calls; assess utility
+   - **Debug Logging**: Locate `logger.debug`, `console.log`, or custom logger calls; assess utility
    - **UI Strings**: User-facing strings hardcoded in scripts instead of centralized constants
    - **Repeated Patterns**: Repeated code sequences that could use helper functions or extracted variants
    - **Magic Numbers**: Numeric literals without named constants, especially repeated values or semantically meaningful numbers
    - **Structural Concerns**: Files >300 lines, functions >50 lines, mixed concerns (document these for Feature Workflow)
 
-3. **Create DISCOVERY_LOG.md** by copying `reference\templates\DISCOVERY_LOG.md` and filling its placeholders.
+3. **Create DISCOVERY_LOG.md** by copying `reference/templates/DISCOVERY_LOG.md` and filling its placeholders.
 
 4. **STOP AND REPORT**: Present discovery findings:
    - Summarize housekeeping scope (presentational cleanup targets)
@@ -103,7 +103,7 @@ If a gate cannot be satisfied, stop and report. Do not begin Phase 2 until the g
    - **Phase 1d**: Pattern consolidation - low risk
    - **Phase 1e**: Structural recommendations - documentation only, no execution
 
-5. **Create HOUSEKEEPING_CONTRACT.md** by copying `reference\templates\HOUSEKEEPING_CONTRACT.md` and filling its placeholders.
+5. **Create HOUSEKEEPING_CONTRACT.md** by copying `reference/templates/HOUSEKEEPING_CONTRACT.md` and filling its placeholders.
 
 6. **STOP AND REPORT**: Present contract:
    - Confirm housekeeping targets (comments, logs, strings, patterns, numbers)
@@ -122,7 +122,7 @@ If a gate cannot be satisfied, stop and report. Do not begin Phase 2 until the g
 - Each agent gets relevant sections of HOUSEKEEPING_CONTRACT.md
 - Structural recommendations (1e) are compiled by single agent as documentation summary
 - Follow CORE_PROTOCOLS.md §6 for parallel sub-agent safety
-- **Model selection**: Housekeeping agents are verifiable-output work — omit the model parameter so the host's secondary model applies ([`.\CORE_PROTOCOLS.md`](.\CORE_PROTOCOLS.md) §7)
+- **Model selection**: Housekeeping agents are verifiable-output work — omit the model parameter so the host's secondary model applies ([`./CORE_PROTOCOLS.md`](./CORE_PROTOCOLS.md) §7)
 
 **Sub-Agent Prompt Template**:
 
@@ -130,9 +130,9 @@ If a gate cannot be satisfied, stop and report. Do not begin Phase 2 until the g
    You are a Housekeeping Agent working on: [SCOPE from contract]
    Risk Class: [Standard/Presentational]
 
-   > Shared protocols: Follow `.\CORE_PROTOCOLS.md` for artifact placement, session naming, shell syntax, and onboarding. Place all artifacts in `notes\active\YYYY-MM-DD_Refactor_[Description]\`.
+   > Shared protocols: Follow `./CORE_PROTOCOLS.md` for artifact placement, session naming, shell syntax, and onboarding. Place all artifacts in `.flybywire\active\YYYY-MM-DD_Refactor_[Description]\`.
 
-   [Copy Block A (onboarding) from `reference\06-implementer-prompt-skeleton.md` into this prompt verbatim.
+   [Copy Block A (onboarding) from `reference/06-implementer-prompt-skeleton.md` into this prompt verbatim.
     Fills: [SCOPE_CONTRACT] = this scope's contract file; [EXTRA_CONTEXT_DOCS] = none; [EXTRA_ENVIRONMENT_CHECKS] = none; [ACKNOWLEDGMENT] = "Acknowledge readiness."]
    Then also confirm frozen gates are green before starting: build passes, no behavior changes intended, scope approved, interfaces locked, workspace backed up.
 
@@ -195,7 +195,7 @@ If a gate cannot be satisfied, stop and report. Do not begin Phase 2 until the g
 
 **Process**:
 1. Generate diff of all changes
-2. Create AUDIT_REPORT.md by copying `reference\templates\AUDIT_REPORT.md` and filling its placeholders.
+2. Create AUDIT_REPORT.md by copying `reference/templates/AUDIT_REPORT.md` and filling its placeholders.
 
 3. **Specific Checks for Housekeeping**:
    - **String Centralization**: Verify all moved strings are referenced by constant name, no hardcoded strings remain in approved scope
@@ -211,7 +211,7 @@ If a gate cannot be satisfied, stop and report. Do not begin Phase 2 until the g
 
 ## Artifact Maintenance
 
-All markdown files created must be preserved under `notes\active\YYYY-MM-DD_Refactor_[Description]\`:
+All markdown files created must be preserved under `.flybywire\active\YYYY-MM-DD_Refactor_[Description]\`:
 - **DISCOVERY_LOG.md**: Initial inventory
 - **HOUSEKEEPING_CONTRACT.md**: What was approved and what was rejected
 - **PROGRESS_LOG.md**: Change history

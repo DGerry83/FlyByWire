@@ -1,0 +1,21 @@
+root: ./eval/ab
+workspace: ./eval/ab-workspace
+baseline: true
+target: gemini-3.1-flash-lite
+judge: gemini-3.1-flash-lite
+baseUrl: https://generativelanguage.googleapis.com/v1beta/openai
+apiKeyEnv: GEMINI_API_KEY
+concurrency: 1
+layout: iteration
+strict: true
+report:
+  enabled: true
+  title: FlyByWire A/B Report
+logging:
+  format: pretty
+  verbose: false
+  color: auto
+targetParams:
+  temperature: 0
+judgeParams:
+  temperature: 0
